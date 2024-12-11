@@ -63,7 +63,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
                 </div>
             </div>
            )}
-        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full mt-[100px] w-[600px] md:px-[120px] px-[35px] text-left h-[270px] md:h-[600px] py-[30px]`}>
+        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[600px] md:px-[120px] px-[35px] text-left h-[270px] md:h-[600px] py-[30px]`}>
             <div>
                 <h1 className="pt-[30px] md:text-[80px] font-semibold md:pl-[18px] text-[35px] pl-[10px]">{name}</h1>
                 <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
