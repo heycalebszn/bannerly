@@ -50,7 +50,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
         .finally(() => {
             setIsGenerating(false);
         })
-    }, 3000);// 3 seconds delay
+    }, 1000);// 3 seconds delay
     }
     return(
         <section className="flex flex-col items-center justify-center pt-[100px] relative md:w-full w-full m-auto">
