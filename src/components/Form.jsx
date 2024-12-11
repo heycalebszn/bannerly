@@ -243,8 +243,8 @@ const Form = () => {
         <div className="w-full px-4">
           <BannerCard
             formData={formData}
-            selectedTech={selectedTech}
-            techConfig={TECH_STACK_CONFIG}
+            selectedLanguages={selectedTech}
+            availableLanguages={TECH_STACK_CONFIG}
           />
         </div>
       )}
