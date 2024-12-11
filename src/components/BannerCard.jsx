@@ -11,14 +11,13 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
     const [showPreviewModal, setShowPreviewModal] = useState(false);
 
     const shareToFacebook = () => {
-        const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(
+        const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${encodeURLComponent(imageUrl)}&text=${encodeURLComponent(
             `Check out my new customized banner! You can also get yours at ${siteLink}`
         )}`;
         window.open(facebookShareUrl, "_blank");
     }
-
     const shareToTwitter = () => {
-        const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(
+        const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURLComponent(imageUrl)}&text=${encodeURLComponent(
             `Check out my new customized banner! You can also get yours at ${siteLink}`
         )}`;
         window.open(twitterShareUrl, "_blank");
