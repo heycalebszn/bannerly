@@ -11,13 +11,14 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
     const [showPreviewModal, setShowPreviewModal] = useState(false);
 
     const shareToFacebook = () => {
-        const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${encodeURLComponent(imageUrl)}&text=${encodeURLComponent(
+        const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(
             `Check out my new customized banner! You can also get yours at ${siteLink}`
         )}`;
         window.open(facebookShareUrl, "_blank");
     }
+
     const shareToTwitter = () => {
-        const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURLComponent(imageUrl)}&text=${encodeURLComponent(
+        const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(
             `Check out my new customized banner! You can also get yours at ${siteLink}`
         )}`;
         window.open(twitterShareUrl, "_blank");
@@ -73,9 +74,9 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
 
            {showPreviewModal && (
              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 md:hidden">
-               <div className="relative w-full h-full flex flex-col p-4" 
+               <div className="relative w-full h-full flex flex-col" 
                     style={{ background: 'radial-gradient(circle at center, #0c031b 0%, #140c2c 35%, #19082f 60%, #0c031b 100%)' }}>
-                 <div className="flex justify-between items-center mb-4 px-4">
+                 <div className="flex justify-between items-center p-4">
                    <h2 className="text-white text-xl font-bold">Preview</h2>
                    <button 
                      onClick={() => setShowPreviewModal(false)}
@@ -85,8 +86,8 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                    </button>
                  </div>
                  
-                 <div className="flex-1 overflow-x-auto bg-transparent">
-                   <div className="min-w-[600px] h-full flex items-center px-4">
+                 <div className="flex-1 overflow-y-auto">
+                   <div className="min-w-[600px] flex items-center justify-center p-4">
                      <div id="banner-preview" 
                           className="bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg">
                        <div>
@@ -121,6 +122,35 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                          </div>
                        </div>
                      </div>
+                   </div>
+                 </div>
+
+                 <div className="absolute bottom-0 left-0 right-0 bg-[#0c031b]/80 backdrop-blur-sm p-4">
+                   <div className="flex flex-col items-center gap-4">
+                     <button 
+                       onClick={downloadBanner} 
+                       className="bg-white text-purple-700 text-[18px] p-[8px] rounded-[15px] font-semibold w-[300px]" 
+                       disabled={isGenerating}
+                     >
+                       {isGenerating ? "Generating..." : "Download Banner"}
+                     </button>
+
+                     {imageUrl && (
+                       <div className="flex flex-col items-center justify-center gap-2">
+                         <h1 className="text-white text-[20px]">Share to:</h1>
+                         <div className="flex items-center justify-center gap-2">
+                           <div onClick={shareToTwitter} className="bg-transparent border border-gray-500 p-[8px] rounded-[10px] cursor-pointer">
+                             <Twitter className="text-white w-[20px]" />
+                           </div>
+                           <div onClick={shareToFacebook} className="bg-transparent border border-gray-500 p-[8px] rounded-[10px] cursor-pointer">
+                             <Facebook className="text-white w-[20px]" />
+                           </div>
+                           <div onClick={shareToLinkedIn} className="bg-transparent border border-gray-500 p-[8px] rounded-[10px] cursor-pointer">
+                             <Linkedin className="text-white w-[20px]" />
+                           </div>
+                         </div>
+                       </div>
+                     )}
                    </div>
                  </div>
                </div>
