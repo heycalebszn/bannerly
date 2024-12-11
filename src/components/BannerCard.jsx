@@ -1,9 +1,9 @@
 import { Facebook, Github, Linkedin, Twitter } from "lucide-react"
 import { toPng } from "html-to-image"
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
-
-const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
+const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
     const { name, field, twitter, github } = formData;
     const [isGenerating, setIsGenerating] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
@@ -11,18 +11,24 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
     const [showPreviewModal, setShowPreviewModal] = useState(false);
 
     const shareToFacebook = () => {
-        const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${encodeURLComponent(imageUrl)}&text=${encodeURLComponent(
+        const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(
             `Check out my new customized banner! You can also get yours at ${siteLink}`
         )}`;
         window.open(facebookShareUrl, "_blank");
     }
+
     const shareToTwitter = () => {
-        const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURLComponent(imageUrl)}&text=${encodeURLComponent(
+        const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(
             `Check out my new customized banner! You can also get yours at ${siteLink}`
         )}`;
         window.open(twitterShareUrl, "_blank");
     }
-    const shareToLinkedIn = () => {}
+
+    const shareToLinkedIn = () => {
+        const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(imageUrl)}`;
+        window.open(linkedInUrl, "_blank");
+    }
+
     console.log(formData)
 
     const downloadBanner = () => {
@@ -36,6 +42,8 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
             return;
         }
         
+        bannerNode.classList.remove('hidden');
+        
         toPng(bannerNode)
         .then((dataUrl) => {
             const link = document.createElement("a");
@@ -48,6 +56,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
             console.error("Could not generate image", err);
         })
         .finally(() => {
+            bannerNode.classList.add('hidden');
             setIsGenerating(false);
         })
     }, 1000);// 3 seconds delay
@@ -64,44 +73,54 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
            </button>
 
            {showPreviewModal && (
-             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 md:hidden overflow-x-auto">
-               <button 
-                 onClick={() => setShowPreviewModal(false)}
-                 className="absolute top-4 right-4 text-white text-2xl"
-               >
-                 ✕
-               </button>
-               <div className="min-w-[600px] h-full flex items-center">
-                 <div id="banner-preview" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px]`}>
-                   <div>
-                     <h1 className="pt-[30px] text-[35px] font-semibold pl-[10px]">{name}</h1>
-                     <p className="text-[20px] pl-[10px]">{field}_</p>
-                     <div className="flex mt-[20px] items-center">
-                       <div className="flex items-center">
-                         <Twitter className="w-[40px]" />
-                         <p className="text-[15px]">{twitter} </p>
-                         <span className="w-[1px] h-[25px] bg-white ml-[8px]"></span>
+             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 md:hidden">
+               <div className="relative w-full h-full flex flex-col p-4" 
+                    style={{ background: 'radial-gradient(circle at center, #0c031b 0%, #140c2c 35%, #19082f 60%, #0c031b 100%)' }}>
+                 <div className="flex justify-between items-center mb-4 px-4">
+                   <h2 className="text-white text-xl font-bold">Preview</h2>
+                   <button 
+                     onClick={() => setShowPreviewModal(false)}
+                     className="text-white text-2xl"
+                   >
+                     ✕
+                   </button>
+                 </div>
+                 
+                 <div className="flex-1 overflow-x-auto bg-transparent">
+                   <div className="min-w-[600px] h-full flex items-center px-4">
+                     <div id="banner-preview" 
+                          className="bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg">
+                       <div>
+                         <h1 className="pt-[30px] text-[35px] font-semibold pl-[10px]">{name}</h1>
+                         <p className="text-[20px] pl-[10px]">{field}_</p>
+                         <div className="flex mt-[20px] items-center">
+                           <div className="flex items-center">
+                             <Twitter className="w-[40px]" />
+                             <p className="text-[15px]">{twitter} </p>
+                             <span className="w-[1px] h-[25px] bg-white ml-[8px]"></span>
+                           </div>
+                           <div className="flex items-center">
+                             <Github className="w-[40px]" />
+                             <p className="text-[15px]">{github}</p>
+                           </div>
+                         </div>
                        </div>
-                       <div className="flex items-center">
-                         <Github className="w-[40px]" />
-                         <p className="text-[15px]">{github}</p>
+                       <div className="flex items-end justify-end mt-[30px]">
+                         <h1 className="font-bold text-[20px] pr-[30px]">Stack:</h1>
+                         <div className="flex gap-2">
+                           {selectedLanguages.map((lang) => {
+                             const langObj = availableLanguages.find((l) => l.name == lang);
+                             return langObj ? (
+                               <img
+                                 key={lang.name}
+                                 src={langObj.icon}
+                                 alt={lang.name}
+                                 className="w-[30px] bg-white p-[8px] rounded-md"
+                               />
+                             ) : null;
+                           })}
+                         </div>
                        </div>
-                     </div>
-                   </div>
-                   <div className="flex items-end justify-end mt-[30px]">
-                     <h1 className="font-bold text-[20px] pr-[30px]">Stack:</h1>
-                     <div className="flex gap-2">
-                       {selectedLanguages.map((lang) => {
-                         const langObj = availableLanguages.find((l) => l.name == lang);
-                         return langObj ? (
-                           <img
-                             key={lang.name}
-                             src={langObj.icon}
-                             alt={lang.name}
-                             className="w-[30px] bg-white p-[8px] rounded-md"
-                           />
-                         ) : null;
-                       })}
                      </div>
                    </div>
                  </div>
@@ -171,5 +190,21 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
         </section>
     )
 }
+
+BannerCard.propTypes = {
+    formData: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        field: PropTypes.string.isRequired,
+        twitter: PropTypes.string.isRequired,
+        github: PropTypes.string.isRequired
+    }).isRequired,
+    selectedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    availableLanguages: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            icon: PropTypes.string.isRequired
+        })
+    ).isRequired
+};
 
 export default BannerCard;
