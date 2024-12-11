@@ -24,6 +24,15 @@ import psql from "./svg/psql.svg";
 import mongo from "./svg/mongo.svg";
 import dart from "./svg/dart.svg";
 import B from "../../public/B.png";
+import docker from "./svg/docker.svg";
+import flutter from "./svg/flutter.svg";
+import kubernetes from "./svg/kubernetes.svg";
+import aws from "./svg/aws.svg";
+import azure from "./svg/azure.svg";
+import firebase from "./svg/firebase.svg";
+import git from "./svg/git.svg";
+import linux from "./svg/linux.svg";
+import csharp from "./svg/csharp.svg";
 
 export{
     David,
@@ -52,4 +61,13 @@ export{
     psql,
     mongo,
     B,
+    docker,
+    flutter,
+    kubernetes,
+    aws,
+    azure,
+    firebase,
+    git,
+    linux,
+    csharp,
 }
