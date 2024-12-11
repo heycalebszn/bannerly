@@ -89,9 +89,9 @@ const Form = () => {
 
     return(
         <section className="flex flex-col items-center justify-center text-left pt-[100px] relative w-full">
-        <form className="flex justify-center flex-col w-[500px] p-[20px] mb-[100px]" onSubmit={handleSubmit}>
+        <form className="flex justify-center flex-col w-[500px] p-[20px] mb-[100px] m-auto" onSubmit={handleSubmit}>
             <h1 className="text-white font-bold md:text-[40px] text-[30px] pb-[50px] text-center">Let's Get you <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">Started</span>!</h1>
-            <div classNameRe="flex flex-col mb-[20px]">
+            <div className="flex flex-col mb-[20px]">
                 <label htmlFor="Full Name" className="text-white text-[20px] font-md pb-[10px]">Full Name</label>
                 <input className="w-full h-[40px] p-[10px] rounded-md outline-none bg-transparent border border-gray-500 text-gray-300" type="text" placeholder="e.g Caleb Kalejaiye" value={formData.name} onChange={handleChange} name="name" />
             </div>
