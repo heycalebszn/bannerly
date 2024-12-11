@@ -52,7 +52,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
     }, 3000);// 3 seconds delay
     }
     return(
-        <section className="flex flex-col w-full">
+        <section className="flex flex-col items-center justify-center pt-[100px] relative w-full">
            <h1 className="flex pb-[30px] text-white text-[25px] underline">Preview</h1>
 
            {isGenerating && (
@@ -62,19 +62,19 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
                 </div>
             </div>
            )}
-        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] w-full h-fit md:px-[120px] py-[50px] text-white flex-col overflow-hidden  md:w-full px-[50px] sm:w-full`}>
+        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] py-[50px] text-white flex-col overflow-hidden  md:w-full sm:w-full rounded-[10px] mt-[100px] w-full md:px-[120px] px-[50px] text-left`}>
             <div>
-                <h1 className="pt-[30px] md:text-[80px] font-md md:pl-[20px] text-[35px] pl-[15px]">{name}</h1>
-                <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[15px]">{field}_</p>
+                <h1 className="pt-[30px] md:text-[80px] font-semibold md:pl-[20px] text-[35px] pl-[10px]">{name}</h1>
+                <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
                 <div className="flex mt-[35px]">
                 <div className="flex">
-                    <Twitter className="md:w-[70px] w-[50px]" />
-                    <p className="md:text-[20px] text-[15px]">{twitter} </p>
-                    <span className="w-[1px] h-[25px] bg-white ml-[15px]"></span>
+                    <Twitter className="md:w-[70px] w-[40px]" />
+                    <p className="md:text-[25px] text-[20px]">{twitter} </p>
+                    <span className="w-[1px] h-[25px] bg-white ml-[5px]"></span>
                 </div>
                 <div className="flex">
-                    <Github className="md:w-[70px] w-[50px]" />
-                    <p className="md:text-[20px] text-[15px]">{github}</p>
+                    <Github className="md:w-[70px] w-[40px]" />
+                    <p className="md:text-[25px] text-[20px]">{github}</p>
                 </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
             </div>
             
         </div>
-        <button onClick={downloadBanner} className="bg-white text-purple-700 text-[18px] mt-[50px] p-[8px] rounded-[15px] font-semibold w-full" disabled={isGenerating}>{isGenerating ? "Generating..." : "Download Banner"}</button>
+        <button onClick={downloadBanner} className="bg-white text-purple-700 text-[18px] mt-[50px] p-[8px] rounded-[15px] font-semibold w-full mb-[50px]" disabled={isGenerating}>{isGenerating ? "Generating..." : "Download Banner"}</button>
 
         {imageUrl && (
             <div className="flex flex-col items-center justify-center m-auto gap-2">

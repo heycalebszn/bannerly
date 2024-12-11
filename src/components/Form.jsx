@@ -37,7 +37,7 @@ const Form = () => {
         {name: "typescript", icon: 
      ts},
         {name: "javascript", icon: 
-     ts},
+     js},
         {name: "vue", icon: 
      vue},
         {name: "react", icon: 
@@ -51,7 +51,7 @@ const Form = () => {
         {name: "tailwind", icon: 
      tailwind},
         {name: "python", icon: 
-     ts},
+     python},
     ];
     const [showBanner, setShowBanner] = useState(false);
 
@@ -88,7 +88,7 @@ const Form = () => {
     }
 
     return(
-        <section className="flex flex-col items-center justify-center text-left pt-[100px] relative w-full">
+        <section className="flex flex-col items-center justify-center text-left pt-[100px] relative">
         <form className="flex justify-center flex-col w-[500px] p-[20px] mb-[100px] m-auto" onSubmit={handleSubmit}>
             <h1 className="text-white font-bold md:text-[40px] text-[30px] pb-[50px] text-center">Let's Get you <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">Started</span>!</h1>
             <div className="flex flex-col mb-[20px]">
