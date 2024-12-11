@@ -53,7 +53,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
     }
     return(
         <section className="flex flex-col items-center justify-center pt-[100px] relative md:w-full w-full">
-           <h1 className="flex pb-[10px] text-white text-[25px] underline">Preview</h1>
+           <h1 className="flex text-white text-[25px] underline">Preview</h1>
 
            {isGenerating && (
             <div className="flex items-center justify-center w-full h-full bg-black bg-opacity-50 z-50">
@@ -62,11 +62,11 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
                 </div>
             </div>
            )}
-        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden  md:w-full sm:w-full rounded-[10px] mt-[100px] w-[600px] md:px-[120px] px-[35px] text-left h-[300px] md:h-[600px] py-[30px]`}>
+        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden  md:w-full sm:w-full mt-[100px] w-[600px] md:px-[120px] px-[35px] text-left h-[270px] md:h-[600px] py-[30px]`}>
             <div>
                 <h1 className="pt-[30px] md:text-[80px] font-semibold md:pl-[18px] text-[35px] pl-[10px]">{name}</h1>
                 <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
-                <div className="flex mt-[35px] items-center">
+                <div className="flex mt-[20px] items-center">
                 <div className="flex">
                     <Twitter className="md:w-[70px] w-[40px]" />
                     <p className="md:text-[25px] text-[15px]">{twitter} </p>
@@ -78,7 +78,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
                 </div>
                 </div>
             </div>
-            <div className="flex items-end justify-end md:mt-[150px] mt-[50px]">
+            <div className="flex items-end justify-end md:mt-[150px] mt-[30px]">
                 <h1 className="font-bold md:text-[25px] pr-[30px] text-[20px]">Stack:</h1>
                 <div className="flex gap-2">
                     {selectedLanguages.map((lang) => {
