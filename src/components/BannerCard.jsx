@@ -1,3 +1,4 @@
+
 import { Facebook, Github, Linkedin, Twitter } from "lucide-react"
 import { toPng } from "html-to-image"
 import { useState } from "react";
@@ -52,27 +53,27 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
     }, 3000);// 3 seconds delay
     }
     return(
-        <section className="flex flex-col items-center justify-center pt-[100px] relative md:w-full w-full">
-           <h1 className="flex text-white text-[25px] underline">Preview</h1>
+        <section className="flex flex-col items-center justify-center pt-[100px] relative md:w-full w-full m-auto">
+           <h1 className="md:flex text-white text-[25px] underline hidden">Preview</h1>
 
            {isGenerating && (
-            <div className="flex items-center justify-center w-full h-full bg-black bg-opacity-50 z-50">
+            <div className="flex items-center justify-center w-full h-full bg-opacity-50 z-50 mb-[10px]">
                 <div className="text-white text-xl font-bold animate-pulse">
                     Generating...
                 </div>
             </div>
            )}
-        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden  md:w-full sm:w-full mt-[100px] w-[600px] md:px-[120px] px-[35px] text-left h-[270px] md:h-[600px] py-[30px]`}>
+        <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full mt-[100px] w-[600px] md:px-[120px] px-[35px] text-left h-[270px] md:h-[600px] py-[30px]`}>
             <div>
                 <h1 className="pt-[30px] md:text-[80px] font-semibold md:pl-[18px] text-[35px] pl-[10px]">{name}</h1>
                 <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
                 <div className="flex mt-[20px] items-center">
-                <div className="flex">
+                <div className="flex items-center">
                     <Twitter className="md:w-[70px] w-[40px]" />
                     <p className="md:text-[25px] text-[15px]">{twitter} </p>
                     <span className="w-[1px] h-[25px] bg-white ml-[8px]"></span>
                 </div>
-                <div className="flex">
+                <div className="flex items-center">
                     <Github className="md:w-[70px] w-[40px]" />
                     <p className="md:text-[25px] text-[15px]">{github}</p>
                 </div>

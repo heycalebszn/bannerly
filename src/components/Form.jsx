@@ -1,3 +1,4 @@
+
 import { Github, Twitter } from "lucide-react";
 import BannerCard from "./BannerCard";
 import { useState, useEffect } from "react";
@@ -121,7 +122,7 @@ const Form = () => {
                             className={`flex items-center space-x-2 cursor-pointer ${
                                 selectedLanguages.includes(language.name)
                                 ? "text-gray-500"
-                                : "text-gray-700"
+                                : "text-gray-400"
                             }`}
                             >
                             <input 
@@ -136,7 +137,7 @@ const Form = () => {
                         </div>
                     ))}
                 </div>
-                <p className="mt-2 text-gray-500">
+                <p className="mt-2 text-gray-400">
                     You can select a maximum of <strong>5</strong> languages.
                 </p>
             </div>

@@ -11,8 +11,8 @@ const OnBoarding = () => {
                     <img src={B} className="w-[25px] md:w-[] rounded-full ml-[10px]" />
                     <span className='text-white md:text-[13px]'>Bannerly</span>
                 </div>
-            <h1 className="md:text-[80px] text-white text-[35px] font-bold">Get your <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">customized</span> Social banner.</h1>
-            <p className="md:text-[70px] text-transparent text-white font-800 text-[20px]">for Software Developers & Designers.</p>
+            <h1 className="md:text-[70px] text-white text-[35px] font-bold">Get your <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">customized</span> Social banner.</h1>
+            <p className="md:text-[60px] text-transparent text-white font-800 text-[20px]">for Software Developers & Designers.</p>
             </div>
 
             <Link to={"/get-started"}>
