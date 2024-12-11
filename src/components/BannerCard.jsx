@@ -64,9 +64,9 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
            )}
         <div id="banner" className={`bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] py-[50px] text-white flex-col overflow-hidden  md:w-full sm:w-full rounded-[10px] mt-[100px] w-full md:px-[120px] px-[50px] text-left`}>
             <div>
-                <h1 className="pt-[30px] md:text-[80px] font-semibold md:pl-[20px] text-[35px] pl-[10px]">{name}</h1>
+                <h1 className="pt-[30px] md:text-[80px] font-semibold md:pl-[18px] text-[35px] pl-[10px]">{name}</h1>
                 <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
-                <div className="flex mt-[35px]">
+                <div className="flex mt-[35px] items-center">
                 <div className="flex">
                     <Twitter className="md:w-[70px] w-[40px]" />
                     <p className="md:text-[25px] text-[20px]">{twitter} </p>
