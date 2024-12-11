@@ -96,7 +96,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages, }) => {
             </div>
             
         </div>
-        <button onClick={downloadBanner} className="bg-white text-purple-700 text-[18px] mt-[50px] p-[8px] rounded-[15px] font-semibold w-full mb-[50px]" disabled={isGenerating}>{isGenerating ? "Generating..." : "Download Banner"}</button>
+        <button onClick={downloadBanner} className="bg-white text-purple-700 text-[18px] mt-[50px] p-[8px] rounded-[15px] font-semibold w-[300px]  mb-[50px]" disabled={isGenerating}>{isGenerating ? "Generating..." : "Download Banner"}</button>
 
         {imageUrl && (
             <div className="flex flex-col items-center justify-center m-auto gap-2">
