@@ -168,7 +168,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
             <div>
                 <h1 className="pt-[20px] md:text-[80px] font-semibold md:pl-[18px] text-[30px] pl-[10px]">{name}</h1>
                 <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
-                <div className="flex mt-[20px] items-center">
+                <div className="flex md:mt-[20px] items-center mt-[10px] md:ml-[0px] ml-[3px]">
                 <div className="flex items-center">
                     <Twitter className="md:w-[70px] w-[35px]" />
                     <p className="md:text-[25px] text-[15px]">{twitter} </p>

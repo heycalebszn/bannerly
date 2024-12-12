@@ -164,7 +164,7 @@ const Form = () => {
               name="name"
               value={formData.name}
               onChange={handleFormChange}
-              placeholder="e.g John Doe"
+              placeholder="e.g Mathew Mitchels"
             />
           </div>
 
@@ -175,7 +175,7 @@ const Form = () => {
               name="field"
               value={formData.field}
               onChange={handleFormChange}
-              placeholder="e.g Frontend Developer"
+              placeholder="e.g Frontend and UI Designer"
             />
           </div>
 
