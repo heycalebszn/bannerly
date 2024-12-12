@@ -180,7 +180,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                 </div>
                 </div>
             </div>
-            <div className="flex items-end justify-end md:mt-[150px] mt-[30px]">
+            <div className="flex items-end justify-end md:mt-[150px] mt-[40px]">
                 <h1 className="font-bold md:text-[25px] pr-[30px] text-[20px]">Stack:</h1>
                 <div className="flex gap-2">
                     {selectedLanguages.map((lang) => {
