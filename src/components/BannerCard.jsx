@@ -166,7 +166,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
            )}
         <div id="banner" className="hidden md:flex bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[700px] md:px-[120px] px-[35px] text-left h-[250px] md:h-[600px] py-[30px]">
             <div>
-                <h1 className="pt-[20px] md:text-[80px] font-semibold md:pl-[18px] text-[30px] pl-[10px]">{name}</h1>
+                <h1 className="md:pt-[20px] md:text-[80px] font-semibold md:pl-[18px] text-[30px] pl-[10px] pt-[10px]">{name}</h1>
                 <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
                 <div className="flex md:mt-[20px] items-center mt-[10px] md:ml-[0px] ml-[3px]">
                 <div className="flex items-center">
@@ -180,7 +180,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                 </div>
                 </div>
             </div>
-            <div className="flex items-end justify-end md:mt-[150px] mt-[40px]">
+            <div className="flex items-end justify-end md:mt-[150px] mt-[30px]">
                 <h1 className="font-bold md:text-[25px] pr-[30px] text-[20px]">Stack:</h1>
                 <div className="flex gap-2">
                     {selectedLanguages.map((lang) => {
