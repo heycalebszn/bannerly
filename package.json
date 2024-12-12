@@ -14,6 +14,7 @@
     "@emotion/react": "^11.13.5",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "@vercel/analytics": "^1.4.1",
     "clsx": "^2.1.1",
     "devicon": "^2.16.0",
     "framer-motion": "^11.13.1",

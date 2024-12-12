@@ -234,7 +234,7 @@ const Form = () => {
         <button
           type="submit"
           className="bg-white text-purple-700 text-[16px] sm:text-[18px] mt-[30px] sm:mt-[50px] 
-                   p-[8px] rounded-[15px] font-semibold w-full hover:bg-purple-50 transition-colors"
+                   p-[8px] rounded-[15px] font-semibold w-full hover:bg-purple-50 transition-colors hover:bg-transparent hover:border hover:border-gray-500 duration-300"
         >
           Generate Banner! 👩‍🍳
         </button>

@@ -164,18 +164,18 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                 </div>
             </div>
            )}
-        <div id="banner" className="hidden md:flex bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[600px] md:px-[120px] px-[35px] text-left h-[270px] md:h-[600px] py-[30px]">
+        <div id="banner" className="hidden md:flex bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[700px] md:px-[120px] px-[35px] text-left h-[250px] md:h-[600px] py-[30px]">
             <div>
-                <h1 className="pt-[30px] md:text-[80px] font-semibold md:pl-[18px] text-[35px] pl-[10px]">{name}</h1>
+                <h1 className="pt-[20px] md:text-[80px] font-semibold md:pl-[18px] text-[30px] pl-[10px]">{name}</h1>
                 <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">{field}_</p>
                 <div className="flex mt-[20px] items-center">
                 <div className="flex items-center">
-                    <Twitter className="md:w-[70px] w-[40px]" />
+                    <Twitter className="md:w-[70px] w-[35px]" />
                     <p className="md:text-[25px] text-[15px]">{twitter} </p>
                     <span className="w-[1px] h-[25px] bg-white ml-[8px]"></span>
                 </div>
                 <div className="flex items-center">
-                    <Github className="md:w-[70px] w-[40px]" />
+                    <Github className="md:w-[70px] w-[35px]" />
                     <p className="md:text-[25px] text-[15px]">{github}</p>
                 </div>
                 </div>
@@ -190,7 +190,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                              key={lang.name}
                              src={langObj.icon}
                              alt={lang.name}
-                             className="md:w-[50px] w-[30px] bg-white p-[8px] rounded-md"
+                             className="md:w-[50px] w-[30px] bg-white md:p-[8px] p-[5px] rounded-md"
                             />
                         ) : null;
                     })}

@@ -1,14 +1,9 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
 export const Context = createContext();
 
 export const FormProvider = ({children}) => {
-    const [ formData, setFormData ] = useState({
-        name: "",
-        field: "",
-        twitter: "",
-        github: "",
-    });
+    const [ formData, setFormData ] = useState({});
 
     return(
         <FormProvider.Provider value={{ formData, setFormData }}>
