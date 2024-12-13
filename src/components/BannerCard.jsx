@@ -67,7 +67,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
   };
   return (
     <section className="flex flex-col items-center justify-center md:pt-[100px] relative md:w-full w-full m-auto">
-      <h1 className="md:flex text-white text-[25px] underline hidden">
+      <h1 className="md:flex text-white text-[25px] underline hidden mb-10">
         Preview
       </h1>
 

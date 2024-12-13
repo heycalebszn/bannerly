@@ -33,8 +33,8 @@ const GradientSelector = ({ onGradientChange }) => {
             onChange={(e) => setGradientType(e.target.value)}
             className="p-[5px] rounded mb-2 bg-transparent text-white border-2 border-gray-500 outline-none"
           >
-            <option value="linear">Linear</option>
-            <option value="radial">Radial</option>
+            <option value="linear" className="text-black">Linear</option>
+            <option value="radial" className="text-black">Radial</option>
           </select>
         </div>
 
@@ -51,9 +51,9 @@ const GradientSelector = ({ onGradientChange }) => {
         )}
       </div>
 
-      <div className="grid grid-cols-3 mt-5">
+      <div className="grid grid-cols-2 my-4 md:grid-cols-3 gap-3 md:mt-5">
         {colors.map((color, index) => (
-          <div key={index} className="flex items-center gap-2 mb-2">
+          <div key={index} className="flex items-center gap-1 mb-2">
             <input
               type="color"
               value={color}
