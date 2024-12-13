@@ -1,7 +1,7 @@
-import { Facebook, Github, Linkedin, Twitter } from "lucide-react";
 import { toPng } from "html-to-image";
-import { useState } from "react";
+import { Facebook, Github, Linkedin, Twitter } from "lucide-react";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
   const { name, field, twitter, github, rgbabackground } = formData;
@@ -63,11 +63,11 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
           bannerNode.classList.add("hidden");
           setIsGenerating(false);
         });
-    }, 1000); // 3 seconds delay
+    }, 1000); 
   };
   return (
     <section className="flex flex-col items-center justify-center md:pt-[100px] relative md:w-full w-full m-auto">
-      <h1 className="md:flex text-white text-[25px] underline hidden">
+      <h1 className="md:flex text-white text-[25px] underline hidden mb-10">
         Preview
       </h1>
 
@@ -194,9 +194,11 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         id="banner"
         className="hidden md:flex bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[700px] md:px-[120px] px-[35px] text-left h-[250px] md:h-[600px] py-[30px]"
         style={{
-          backgroundImage: rgbabackground && rgbabackground.startsWith("linear") || rgbabackground.startsWith("radial")
-            ? rgbabackground
-            : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
+          backgroundImage:
+            (rgbabackground && rgbabackground.startsWith("linear")) ||
+            rgbabackground.startsWith("radial")
+              ? rgbabackground
+              : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
         }}
       >
         <div>
@@ -208,12 +210,12 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
           </p>
           <div className="flex md:mt-[20px] items-center mt-[10px] md:ml-[0px] ml-[3px]">
             <div className="flex items-center">
-              <Twitter className="md:w-[70px] w-[35px]" />
+              <Twitter className="md:w-[fit] w-[35px]" />
               <p className="md:text-[25px] text-[15px]">{twitter} </p>
-              <span className="w-[1px] h-[25px] bg-white ml-[8px]"></span>
+              <span className="w-[1px] h-[25px] bg-white mx-[1rem]"></span>
             </div>
             <div className="flex items-center">
-              <Github className="md:w-[70px] w-[35px]" />
+              <Github className="md:w-[fit] w-[35px]" />
               <p className="md:text-[25px] text-[15px]">{github}</p>
             </div>
           </div>
