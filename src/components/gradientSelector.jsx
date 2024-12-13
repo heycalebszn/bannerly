@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const GradientSelector = ({ onGradientChange }) => {
   const [gradientType, setGradientType] = useState("linear");
   const [colors, setColors] = useState(["rgb(41,41,41) 70%", "#494949"]);
-  const [angle, setAngle] = useState(90); 
+  const [angle, setAngle] = useState(90);
 
   const handleColorChange = (color, index) => {
     const updatedColors = [...colors];
@@ -33,8 +33,12 @@ const GradientSelector = ({ onGradientChange }) => {
             onChange={(e) => setGradientType(e.target.value)}
             className="p-[5px] rounded mb-2 bg-transparent text-white border-2 border-gray-500 outline-none"
           >
-            <option value="linear" className="text-black">Linear</option>
-            <option value="radial" className="text-black">Radial</option>
+            <option value="linear" className="text-black">
+              Linear
+            </option>
+            <option value="radial" className="text-black">
+              Radial
+            </option>
           </select>
         </div>
 
