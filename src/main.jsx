@@ -15,5 +15,5 @@ createRoot(document.getElementById('root')).render(
         <Route path="/form" element={<Form />} />
       </Routes>
     </Router>
-  </StrictMode>,
+  </StrictMode>
 )
