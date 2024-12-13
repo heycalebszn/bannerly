@@ -64,12 +64,6 @@ const GradientSelector = ({ onGradientChange }) => {
           </div>
         ))}
       </div>
-      <button
-        onClick={() => setColors([...colors, "#ffffff"])}
-        className="my-2 p-2 bg-blue-800 text-white rounded"
-      >
-        Add More...
-      </button>
       <div
         className={`w-full h-40 rounded-lg border border-gray-400`}
         style={{ background: updateGradient() }}
