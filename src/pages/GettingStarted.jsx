@@ -23,9 +23,9 @@ export default function GettingStarted() {
 
   return (
     <div className="flex flex-col items-center justify-left text-left pt-[200px] md:pt-[150px] md:px-[0px] mx-[20px]">
-        <h1 className="md:text-[30px] font-medium text-white pb-[30px] text-left flex text-[25px]">Please Choose your Field!👨‍🍳</h1>
+        <h1 className="md:text-[30px] font-medium text-white pb-[30px] text-center flex text-[25px]">Please Choose your Field!👨‍🍳</h1>
     
-    <div className="flex flex-col items-center justify-left m-auto w-52 text-left">
+    <div className="flex flex-col items-center justify-left m-auto md:w-52 text-left w-[250px]">
       <Combobox value={selected} onChange={(value) => setSelected(value)} onClose={() => setQuery('')}>
         <div className="relative w-[400px]">
           <ComboboxInput
@@ -56,7 +56,7 @@ export default function GettingStarted() {
               className="group flex cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/10"
             >
               <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
-              <div className="text-[18px] text-white">{person.name}</div>
+              <div className="md:text-[18px] text-white text-[15px]">{person.name}</div>
             </ComboboxOption>
           ))}
         </ComboboxOptions>
