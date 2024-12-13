@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 const GradientSelector = ({ onGradientChange }) => {
   const [gradientType, setGradientType] = useState("linear");
-  const [colors, setColors] = useState(["#ff0000", "#0000ff"]);
-  const [angle, setAngle] = useState(90);
+  const [colors, setColors] = useState(["rgb(41,41,41) 70%", "#494949"]);
+  const [angle, setAngle] = useState(90); 
 
   const handleColorChange = (color, index) => {
     const updatedColors = [...colors];
@@ -51,7 +51,7 @@ const GradientSelector = ({ onGradientChange }) => {
         )}
       </div>
 
-      <div className="grid grid-cols-2 my-4 md:grid-cols-3 gap-3 md:mt-5">
+      <div className="grid grid-cols-2 my-4 gap-3">
         {colors.map((color, index) => (
           <div key={index} className="flex items-center gap-1 mb-2">
             <input
