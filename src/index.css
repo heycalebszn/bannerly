@@ -15,3 +15,6 @@ body{
     width: 100%;
 }
 
+.circle{
+    clip-path: circle();
+}
