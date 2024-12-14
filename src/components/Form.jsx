@@ -130,7 +130,6 @@ const Form = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showBanner, setShowBanner] = useState(false);
-  const [color, setColor] = useState("#ffffff");
 
   const filteredTech = useMemo(
     () =>
@@ -182,6 +181,23 @@ const Form = () => {
     setFormData((prev) => ({
       ...prev,
       rgbabackground: gradient,
+    }));
+  };
+
+  const handleFiletoUrl = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onerror = (error) => reject(error);
+      reader.onload = () => resolve(reader.result);
+    });
+  };
+
+  const handleImageUpload = async (e) => {
+    const loadedImg = await handleFiletoUrl(e.target.files?.[0]);
+    setFormData((prev) => ({
+      ...prev,
+      rgbabackground: loadedImg,
     }));
   };
 
@@ -291,6 +307,15 @@ const Form = () => {
               </label>
               <div className="mt-2">
                 <GradientSelector onGradientChange={handleGradientChange} />
+                <div className="mt-5">
+                    <h1 className="text-white font-bold w-32 h-10 rounded hover:bg-white hover:text-black cursor-pointer flex justify-center items-center border-2 border-white absolute">choose image</h1>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="opacity-0 cursor-pointer"
+                  />
+                </div>
               </div>
             </div>
           </div>
