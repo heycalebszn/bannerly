@@ -62,7 +62,7 @@ const GradientSelector = ({ onGradientChange }) => {
               type="color"
               value={color}
               onChange={(e) => handleColorChange(e.target.value, index)}
-              className="w-[50px] circle"
+              className="w-[80px] circle"
             />
             <span className="text-white">{color}</span>
           </div>

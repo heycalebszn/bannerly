@@ -42,7 +42,7 @@ const OnBoarding = () => {
           </a>
         </div>
         <div className="bg-transparent border border-gray-500 md:p-[10px] rounded-[10px] cursor-pointer p-[8px]">
-          <a href="https:/github.com/heycalebszn">
+          <a href="https://github.com/heycalebszn">
             <Github className="md:w-[25px] text-white w-[20px]" />
           </a>
         </div>
