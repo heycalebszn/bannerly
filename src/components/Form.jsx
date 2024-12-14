@@ -19,7 +19,7 @@ const FormInput = memo(({ icon: Icon, ...props }) => (
   <div className="flex border border-gray-500 p-[5px] gap-2 rounded-md bg-transparent h-[40px] outline-none">
     {Icon && <Icon className="text-white" />}
     <input
-      className="bg-transparent outline-none w-full text-gray-300 autofill:bg-transparent autofill:focus:bg-transparent"
+      className="w-full text-gray-300 bg-transparent outline-none autofill:bg-transparent autofill:focus:bg-transparent"
       {...props}
     />
   </div>
@@ -30,9 +30,9 @@ FormInput.propTypes = {
 FormInput.displayName = "FormInput";
 
 const TechStackTag = memo(({ name, icon, onRemove }) => (
-  <div className="flex items-center gap-1 bg-purple-500/10 border border-purple-500 rounded-md px-2 py-1">
+  <div className="flex items-center gap-1 px-2 py-1 border border-purple-500 rounded-md bg-purple-500/10">
     <img src={icon} alt={name} className="w-4 h-4" />
-    <span className="text-purple-400 text-sm">{name}</span>
+    <span className="text-sm text-purple-400">{name}</span>
     <X
       className="w-4 h-4 text-purple-400 cursor-pointer hover:text-purple-300"
       onClick={() => onRemove(name)}
@@ -59,13 +59,12 @@ const TechStackDropdown = memo(
     <div className="relative w-full">
       <div
         onClick={onToggle}
-        className="w-full border border-gray-500 rounded-md p-2 flex items-center justify-between
-                cursor-pointer hover:border-purple-400 transition-colors"
+        className="flex items-center justify-between w-full p-2 transition-colors border border-gray-500 rounded-md cursor-pointer hover:border-purple-400"
       >
         <input
           type="text"
           placeholder="Search technologies..."
-          className="bg-transparent outline-none text-gray-300 w-full"
+          className="w-full text-gray-300 bg-transparent outline-none"
           value={searchTerm}
           onChange={onSearchChange}
           onClick={(e) => e.stopPropagation()}
@@ -79,7 +78,7 @@ const TechStackDropdown = memo(
 
       {isOpen && (
         <div
-          className="absolute w-full mt-1 bg-gray-900 border border-gray-700 rounded-md 
+          className="absolute w-full mt-1 bg-gray-900 border border-gray-700 rounded-md
                     shadow-lg max-h-[250px] sm:max-h-[300px] overflow-y-auto z-10"
         >
           {filteredTech.map((tech) => (
@@ -97,7 +96,7 @@ const TechStackDropdown = memo(
             `}
             >
               <img src={tech.icon} alt={tech.name} className="w-5 h-5" />
-              <span className="capitalize text-sm">{tech.name}</span>
+              <span className="text-sm capitalize">{tech.name}</span>
             </div>
           ))}
         </div>
@@ -194,7 +193,7 @@ const Form = () => {
         >
           <h1 className="text-white font-bold text-[28px] sm:text-[40px] pb-[30px] sm:pb-[50px] text-center">
             Let&apos;s Get you{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-300 to-purple-600">
               Started
             </span>
             !
@@ -231,7 +230,7 @@ const Form = () => {
               <label className="text-white text-[16px] sm:text-[20px]">
                 Socials
               </label>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <FormInput
                   icon={Twitter}
                   name="twitter"
@@ -279,7 +278,7 @@ const Form = () => {
                 onToggle={toggleDropdown}
               />
 
-              <p className="text-gray-400 text-sm">
+              <p className="text-sm text-gray-400">
                 Selected: {selectedTech.length}/{MAX_STACK_SELECTIONS}{" "}
                 technologies
               </p>
@@ -297,7 +296,7 @@ const Form = () => {
 
           <button
             type="submit"
-            className="bg-white text-purple-700 text-[16px] sm:text-[18px] mt-[30px] sm:mt-[50px] 
+            className="bg-white text-purple-700 text-[16px] sm:text-[18px] mt-[30px] sm:mt-[50px]
                    p-[8px] rounded-[15px] font-semibold w-full hover:bg-purple-50 transition-colors hover:bg-transparent hover:border hover:border-gray-500 duration-300"
           >
             Generate Banner! 👩‍🍳
