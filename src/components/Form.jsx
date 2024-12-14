@@ -307,7 +307,9 @@ const Form = () => {
               <div className="mt-2">
                 <GradientSelector onGradientChange={handleGradientChange} />
                 <div className="mt-5">
-                    <h1 className="text-white font-bold w-32 h-10 rounded hover:bg-white hover:text-black cursor-pointer flex justify-center items-center border-2 border-white absolute">choose image</h1>
+                  <h1 className="text-white font-bold w-32 h-10 rounded hover:bg-white hover:text-black cursor-pointer flex justify-center items-center border-2 border-white absolute">
+                    choose image
+                  </h1>
                   <input
                     type="file"
                     accept="image/*"

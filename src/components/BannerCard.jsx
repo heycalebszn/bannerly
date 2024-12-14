@@ -197,12 +197,13 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         style={{
           backgroundImage: rgbabackground.startsWith("data:image")
             ? `url(${rgbabackground})`
-            : rgbabackground.startsWith("linear") || rgbabackground.startsWith("radial")
+            : rgbabackground.startsWith("linear") ||
+              rgbabackground.startsWith("radial")
             ? rgbabackground
             : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div>
