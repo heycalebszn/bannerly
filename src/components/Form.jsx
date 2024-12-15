@@ -1,10 +1,10 @@
-import { Github, Twitter, ChevronDown, X } from "lucide-react";
+import { ChevronDown, Github, Twitter, X } from "lucide-react";
+import PropTypes from "prop-types";
 import { memo, useCallback, useMemo, useState } from "react";
-import BannerCard from "./BannerCard";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { TECH_STACK_CONFIG } from "../config/techStack";
 import { MAX_STACK_SELECTIONS } from "../constants";
-import PropTypes from "prop-types";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import BannerCard from "./BannerCard";
 import GradientSelector from "./gradientSelector";
 
 const initialFormState = {
@@ -183,21 +183,84 @@ const Form = () => {
     }));
   };
 
-  const handleFiletoUrl = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onerror = (error) => reject(error);
-      reader.onload = () => resolve(reader.result);
-    });
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+
+    if (!file) {
+      return alert("Please select a file to upload!");
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append(
+      "upload_preset",
+      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+    );
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+        }/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to upload the image!");
+      }
+
+      const data = await response.json();
+      if (data.secure_url) {
+        setFormData((prev) => ({
+          ...prev,
+          rgbabackground: data.secure_url,
+        }));
+
+        scheduleImageDeletion(data.public_id);
+      } else {
+        throw new Error("Image URL is missing in the response!");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error.message);
+      alert("Failed to upload the image.");
+    }
   };
 
-  const handleImageUpload = async (e) => {
-    const loadedImg = await handleFiletoUrl(e.target.files?.[0]);
-    setFormData((prev) => ({
-      ...prev,
-      rgbabackground: loadedImg,
-    }));
+  const scheduleImageDeletion = (publicId) => {
+    const CLOUDINARY_API_KEY = import.meta.env.VITE_CLOUDINARY_API_KEY;
+    const CLOUDINARY_API_SECRET = import.meta.env.VITE_CLOUDINARY_API_SECRET;
+    const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+
+    const delay = 600000;
+
+    setTimeout(async () => {
+      try {
+        const auth = btoa(`${CLOUDINARY_API_KEY}:${CLOUDINARY_API_SECRET}`);
+        const response = await fetch(
+          `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/resources/image/upload/${publicId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Basic ${auth}`,
+            },
+          }
+        );
+
+        if (response.ok) {
+          console.log(`Image with public ID ${publicId} deleted successfully.`);
+        } else {
+          console.error(
+            `Failed to delete image with public ID ${publicId}.`,
+            await response.json()
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting image:", error.message);
+      }
+    }, delay);
   };
 
   return (
@@ -306,16 +369,17 @@ const Form = () => {
               </label>
               <div className="mt-2">
                 <GradientSelector onGradientChange={handleGradientChange} />
-                <div className="mt-5">
-                  <h1 className="text-white font-bold w-32 h-10 rounded hover:bg-white hover:text-black cursor-pointer flex justify-center items-center border-2 border-white absolute">
-                    choose image
-                  </h1>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="opacity-0 cursor-pointer"
-                  />
+                <div className="mt-5" onClick={() => document.getElementById("fileInput").click()}>
+                  <div className="text-white font-bold w-32 h-10 rounded hover:bg-white hover:text-black cursor-pointer flex justify-center items-center border-2 border-white">
+                    <h1>choose image</h1>
+                    <input
+                      id="fileInput"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="cursor-pointer hidden"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -195,7 +195,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         id="banner"
         className={`hidden md:flex md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[700px] md:px-[120px] px-[35px] text-left h-[250px] md:h-[600px] py-[30px]`}
         style={{
-          backgroundImage: rgbabackground.startsWith("data:image")
+          backgroundImage: rgbabackground.startsWith("https")
             ? `url(${rgbabackground})`
             : rgbabackground.startsWith("linear") ||
               rgbabackground.startsWith("radial")
