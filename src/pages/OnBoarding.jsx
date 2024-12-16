@@ -16,7 +16,7 @@ const OnBoarding = () => {
           <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">
             customized
           </span>{" "}
-          Social banner.
+          Social banner
         </h1>
         <p className="md:text-[60px] text-transparent text-white font-800 text-[20px]">
           for Software Developers & Designers.
