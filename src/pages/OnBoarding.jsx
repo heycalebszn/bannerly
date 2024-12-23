@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 
 const OnBoarding = () => {
     return (
-        <div className="flex flex-col items-center justify-center text-center relative text-white gap-y-8 max-lg:gap-y-12">
+        <div className="flex flex-col items-center justify-center text-center relative text-white gap-y-8 max-lg:gap-y-12 leading-tight">
             <div className="flex flex-col text-center z-[999px] relative items-center justify-center gap-y-6 max-lg:gap-y-10">
                 <Header />
 
