@@ -22,10 +22,10 @@ export default function GettingStarted() {
         })
 
   return (
-    <div className="flex flex-col items-center justify-left text-left pt-[200px] md:pt-[150px] md:px-[0px] mx-[20px]">
-        <h1 className="md:text-[30px] font-medium text-white pb-[30px] text-center flex text-[25px]">Please Choose your Field!👨‍🍳</h1>
+    <div className="flex flex-col items-center justify-center text-left h-screen gap-6">
+        <h1 className="md:text-[30px] font-medium text-white text-center flex text-[25px]">Please Choose your Field!👨‍🍳</h1>
     
-    <div className="flex flex-col items-center justify-left m-auto md:w-52 text-left w-[250px]">
+    <div className="flex flex-col items-center justify-left text-left gap-6">
       <Combobox value={selected} onChange={(value) => setSelected(value)} onClose={() => setQuery('')}>
         <div className="relative w-[400px]">
           <ComboboxInput
@@ -63,7 +63,7 @@ export default function GettingStarted() {
       </Combobox>
 
       <Link to={'/form'}>
-      <button className="bg-white text-purple-700 text-[18px] mt-[150px] p-[8px] rounded-[15px] font-semibold w-full">Continue</button>
+      <button className="bg-white text-purple-700 text-[18px] p-[8px] rounded-[15px] font-semibold w-full">Continue</button>
       </Link>
     </div>
     </div>

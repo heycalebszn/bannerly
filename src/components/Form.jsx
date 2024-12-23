@@ -1,4 +1,6 @@
-import { Github, Twitter, ChevronDown, X } from "lucide-react";
+import {ChevronDown, X } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 import { memo, useCallback, useMemo, useState } from "react";
 import BannerCard from "./BannerCard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
@@ -232,14 +234,14 @@ const Form = () => {
               </label>
               <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <FormInput
-                  icon={Twitter}
+                  icon={FaXTwitter}
                   name="twitter"
                   value={formData.twitter}
                   onChange={handleFormChange}
                   placeholder="Twitter handle"
                 />
                 <FormInput
-                  icon={Github}
+                  icon={FaGithub}
                   name="github"
                   value={formData.github}
                   onChange={handleFormChange}
