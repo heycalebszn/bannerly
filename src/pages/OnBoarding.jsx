@@ -1,42 +1,42 @@
-import { David, B } from "../assets";
+import { David } from "../assets";
 import { Link } from "react-router-dom";
+import Header from "../components/Header";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 
 const OnBoarding = () => {
     return (
-        <div className="flex flex-col items-center justify-center text-center pt-[100px] relative">
-            <div className="flex flex-col text-center z-[999px] relative items-center justify-center m-auto">
-                <div className="border border-gray-400 p-2 rounded-[30px] flex gap-2 w-[150px] items-center justify-center mb-[20px] md:p-[8px]">
-                    <img src={B} className="w-[25px] rounded-full" />
-                    <span className="text-white md:text-[13px]">Bannerly</span>
-                </div>
+        <div className="flex flex-col items-center justify-center text-center relative text-white gap-y-8 max-lg:gap-y-12">
+            <div className="flex flex-col text-center z-[999px] relative items-center justify-center gap-y-6 max-lg:gap-y-10">
+                <Header />
 
-                <h1 className="md:text-[70px] text-white text-[35px] font-bold">
+                <h1 className=" text-white font-bold lg:text-6xl md:text-4xl text-xl">
                     Get your{" "}
                     <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">
                         customized
                     </span>{" "}
                     Social banner.
                 </h1>
-                <p className="md:text-[60px] text-transparent text-white font-800 text-[20px]">
+                <p className=" text-lg text-transparent text-white md:text-3xl lg:text-4xl ">
                     for Software Developers & Designers.
                 </p>
             </div>
 
             <Link to={"/get-started"}>
-                <button className="bg-white text-purple-700 md:text-[20px] mt-[50px] w-[200px] p-[10px] rounded-[15px] font-semibold md:w-[300px] hover:text-white hover:bg-purple-700 transition ease-in align-middle">
+                <button className="bg-white text-purple-700 md:text-lg lg:text-xl p-2 lg:px-4 lg:py-3 rounded-lg font-semibold hover:text-white hover:bg-purple-700 transition ease-in align-middle">
                     get started! <span className="pl-3">👩‍🍳</span>
                 </button>
             </Link>
+
             <div>
                 <img
-                    className="rounded-[10px] mt-[100px] w-[1000px] md:px-[0px] px-[20px]"
+                    className="rounded-lg my-[10vh] max-w-[1000px] w-[95vw]"
                     src={David}
                     alt="david"
                 />
             </div>
-            <div className="mt-[50px] flex gap-4 mb-[30px]">
+
+            <div className=" flex gap-4 mb-[3vh]">
                 <a
                     href="https://x.com/heyrapto"
                     className="p-3 hover:text-black text-white hover:bg-slate-50 border-2 border-slate-500 transition ease-in-out delay-75"
