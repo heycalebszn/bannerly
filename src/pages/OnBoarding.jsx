@@ -10,7 +10,7 @@ const OnBoarding = () => {
             <div className="flex flex-col text-center z-[999px] relative items-center justify-center gap-y-6 max-lg:gap-y-10">
                 <Header />
 
-                <h1 className=" text-white font-bold lg:text-6xl md:text-4xl text-xl">
+                <h1 className=" text-white font-bold lg:text-6xl md:text-4xl text-xl md:leading-normal leading-tight">
                     Get your{" "}
                     <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">
                         customized
