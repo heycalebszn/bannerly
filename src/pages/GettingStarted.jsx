@@ -3,7 +3,7 @@ import {
     ComboboxButton,
     ComboboxInput,
     ComboboxOption,
-    ComboboxOptions,
+    ComboboxOptions
 } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";

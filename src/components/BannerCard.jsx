@@ -63,8 +63,9 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
           bannerNode.classList.add("hidden");
           setIsGenerating(false);
         });
-    }, 1000); 
+    }, 1000);
   };
+
   return (
     <section className="flex flex-col items-center justify-center md:pt-[100px] relative  max-w-full w-[90vw] m-auto">
       <h1 className="md:flex text-white text-[25px] underline hidden mb-10">
@@ -192,13 +193,17 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
       )}
       <div
         id="banner"
-        className="hidden md:flex bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[700px] md:px-[120px] px-[35px] text-left h-[250px] md:h-[600px] py-[30px]"
+        className={`hidden md:flex md:py-[50px] text-white flex-col overflow-hidden md:w-full sm:w-full w-[700px] md:px-[120px] px-[35px] text-left h-[250px] md:h-[600px] py-[30px]`}
         style={{
-          backgroundImage:
-            (rgbabackground && rgbabackground.startsWith("linear")) ||
-            rgbabackground.startsWith("radial")
-              ? rgbabackground
-              : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
+          backgroundImage: rgbabackground.startsWith("https")
+            ? `url(${rgbabackground})`
+            : rgbabackground.startsWith("linear") ||
+              rgbabackground.startsWith("radial")
+            ? rgbabackground
+            : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div>
@@ -208,7 +213,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
           <p className="md:text-[35px] md:pl-[5px] text-[20px] pl-[10px]">
             {field}_
           </p>
-          <div className="flex md:mt-[20px] items-center mt-[10px] md:ml-[0px] ml-[3px]">
+          <div className="flex md:mt-[20px] items-center mt-[10px] md:ml-[15px] ml-[3px]">
             <div className="flex items-center">
               <Twitter className="md:w-[fit] w-[35px]" />
               <p className="md:text-[25px] text-[15px]">{twitter} </p>

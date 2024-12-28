@@ -1,5 +1,5 @@
-import OnBoarding from "./pages/OnBoarding";
 import { Analytics } from "@vercel/analytics/react";
+import OnBoarding from "./pages/OnBoarding";
 const App = () => {
   return(
     <>
