@@ -1,4 +1,5 @@
 import { ChevronDown, X } from "lucide-react";
+import PropTypes from "prop-types";
 import { memo, useCallback, useMemo, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -8,8 +9,6 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import BannerCard from "./BannerCard";
 import GradientSelector from "./gradientSelector";
 import Header from "./Header";
-import PropTypes from 'prop-types';
-
 
 const initialFormState = {
   name: "",
@@ -274,21 +273,6 @@ const Form = () => {
     }, delay);
   };
 
-  //   return (
-  //     <section className="flex flex-col items-center justify-center text-left pt-[50px] sm:pt-[100px] w-full">
-  //       <div className="w-full px-4">
-  //         <form
-  //           className="flex justify-center flex-col w-full max-w-[500px] p-[15px] sm:p-[20px] mb-[50px] sm:mb-[100px] m-auto"
-  //           onSubmit={handleSubmit}
-  //         >
-  //           <h1 className="text-white font-bold text-[28px] sm:text-[40px] pb-[30px] sm:pb-[50px] text-center">
-  //             Let&apos;s Get you{" "}
-  //             <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-300 to-purple-600">
-  //               Started
-  //             </span>
-  //             !
-  //           </h1>
-  // =======
   return (
     <section className="flex flex-col items-center justify-center text-left">
       <Header />
