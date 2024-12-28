@@ -1,11 +1,15 @@
-import { ChevronDown, Github, Twitter, X } from "lucide-react";
-import PropTypes from "prop-types";
+import { ChevronDown, X } from "lucide-react";
 import { memo, useCallback, useMemo, useState } from "react";
+import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { TECH_STACK_CONFIG } from "../config/techStack";
 import { MAX_STACK_SELECTIONS } from "../constants";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import BannerCard from "./BannerCard";
 import GradientSelector from "./gradientSelector";
+import Header from "./Header";
+import PropTypes from 'prop-types';
+
 
 const initialFormState = {
   name: "",
@@ -16,7 +20,7 @@ const initialFormState = {
 };
 
 const FormInput = memo(({ icon: Icon, ...props }) => (
-  <div className="flex border border-gray-500 p-[5px] gap-2 rounded-md bg-transparent h-[40px] outline-none">
+  <div className="flex items-center text-lg border border-gray-500 p-[5px] gap-2 rounded-md bg-transparent h-[40px] outline-none">
     {Icon && <Icon className="text-white" />}
     <input
       className="w-full text-gray-300 bg-transparent outline-none autofill:bg-transparent autofill:focus:bg-transparent"
@@ -24,9 +28,11 @@ const FormInput = memo(({ icon: Icon, ...props }) => (
     />
   </div>
 ));
+
 FormInput.propTypes = {
   icon: PropTypes.elementType,
 };
+
 FormInput.displayName = "FormInput";
 
 const TechStackTag = memo(({ name, icon, onRemove }) => (
@@ -39,11 +45,13 @@ const TechStackTag = memo(({ name, icon, onRemove }) => (
     />
   </div>
 ));
+
 TechStackTag.propTypes = {
   name: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   onRemove: PropTypes.func.isRequired,
 };
+
 TechStackTag.displayName = "TechStackTag";
 
 const TechStackDropdown = memo(
@@ -104,6 +112,7 @@ const TechStackDropdown = memo(
     </div>
   )
 );
+
 TechStackDropdown.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   searchTerm: PropTypes.string.isRequired,
@@ -118,6 +127,7 @@ TechStackDropdown.propTypes = {
   onTechSelect: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
+
 TechStackDropdown.displayName = "TechStackDropdown";
 
 const Form = () => {
@@ -129,6 +139,7 @@ const Form = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showBanner, setShowBanner] = useState(false);
+  const [color, setColor] = useState("#ffffff");
 
   const filteredTech = useMemo(
     () =>
@@ -263,8 +274,24 @@ const Form = () => {
     }, delay);
   };
 
+  //   return (
+  //     <section className="flex flex-col items-center justify-center text-left pt-[50px] sm:pt-[100px] w-full">
+  //       <div className="w-full px-4">
+  //         <form
+  //           className="flex justify-center flex-col w-full max-w-[500px] p-[15px] sm:p-[20px] mb-[50px] sm:mb-[100px] m-auto"
+  //           onSubmit={handleSubmit}
+  //         >
+  //           <h1 className="text-white font-bold text-[28px] sm:text-[40px] pb-[30px] sm:pb-[50px] text-center">
+  //             Let&apos;s Get you{" "}
+  //             <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-300 to-purple-600">
+  //               Started
+  //             </span>
+  //             !
+  //           </h1>
+  // =======
   return (
-    <section className="flex flex-col items-center justify-center text-left pt-[50px] sm:pt-[100px] w-full">
+    <section className="flex flex-col items-center justify-center text-left">
+      <Header />
       <div className="w-full px-4">
         <form
           className="flex justify-center flex-col w-full max-w-[500px] p-[15px] sm:p-[20px] mb-[50px] sm:mb-[100px] m-auto"
@@ -309,16 +336,16 @@ const Form = () => {
               <label className="text-white text-[16px] sm:text-[20px]">
                 Socials
               </label>
-              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <div className="flex flex-col  gap-3 sm:flex-row sm:gap-4">
                 <FormInput
-                  icon={Twitter}
+                  icon={FaXTwitter}
                   name="twitter"
                   value={formData.twitter}
                   onChange={handleFormChange}
                   placeholder="Twitter handle"
                 />
                 <FormInput
-                  icon={Github}
+                  icon={FaGithub}
                   name="github"
                   value={formData.github}
                   onChange={handleFormChange}
@@ -362,14 +389,16 @@ const Form = () => {
                 technologies
               </p>
             </div>
-
             <div>
               <label className="text-white text-[16px] sm:text-[20px]">
                 Background
               </label>
               <div className="mt-2">
                 <GradientSelector onGradientChange={handleGradientChange} />
-                <div className="mt-5" onClick={() => document.getElementById("fileInput").click()}>
+                <div
+                  className="mt-5"
+                  onClick={() => document.getElementById("fileInput").click()}
+                >
                   <div className="text-white font-bold w-32 h-10 rounded hover:bg-white hover:text-black cursor-pointer flex justify-center items-center border-2 border-white">
                     <h1>choose image</h1>
                     <input
@@ -384,7 +413,6 @@ const Form = () => {
               </div>
             </div>
           </div>
-
           <button
             type="submit"
             className="bg-white text-purple-700 text-[16px] sm:text-[18px] mt-[30px] sm:mt-[50px]

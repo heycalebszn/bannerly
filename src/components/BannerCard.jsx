@@ -67,7 +67,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center md:pt-[100px] relative md:w-full w-full m-auto">
+    <section className="flex flex-col items-center justify-center md:pt-[100px] relative  max-w-full w-[90vw] m-auto">
       <h1 className="md:flex text-white text-[25px] underline hidden mb-10">
         Preview
       </h1>
@@ -207,10 +207,10 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         }}
       >
         <div>
-          <h1 className="md:pt-[20px] md:text-[80px] font-semibold md:pl-[18px] text-[30px] pl-[10px] pt-[10px]">
+          <h1 className="md:pt-[20px] md:text-[80px] font-semibold md:pl-[5px] text-[30px] pl-[10px] pt-[10px]">
             {name}
           </h1>
-          <p className="md:text-[35px] md:pl-[20px] text-[20px] pl-[10px]">
+          <p className="md:text-[35px] md:pl-[5px] text-[20px] pl-[10px]">
             {field}_
           </p>
           <div className="flex md:mt-[20px] items-center mt-[10px] md:ml-[15px] ml-[3px]">

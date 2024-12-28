@@ -1,17 +1,16 @@
-import { David, B } from "../assets";
+import { David } from "../assets";
 import { Link } from "react-router-dom";
-import { Twitter, Github } from "lucide-react";
+import Header from "../components/Header";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 
 const OnBoarding = () => {
-  return (
-    <div className="flex flex-col items-center justify-center text-center pt-[100px] relative">
-      <div className="flex flex-col text-center z-[999px] relative items-center justify-center m-auto">
-        <div className="border border-gray-400 p-2 rounded-[30px] flex gap-2 w-[150px] items-center justify-center mb-[20px] md:p-[8px]">
-          <img src={B} className="w-[25px] rounded-full" />
-          <span className="text-white md:text-[13px]">Bannerly</span>
-        </div>
+    return (
+        <div className="flex flex-col items-center justify-center text-center relative text-white gap-y-8 max-lg:gap-y-12 leading-tight">
+            <div className="flex flex-col text-center z-[999px] relative items-center justify-center gap-y-6 max-lg:gap-y-10">
+                <Header />
 
-        <h1 className="md:text-[70px] text-white text-[35px] font-bold">
+                <h1 className="md:text-[70px] text-white text-[35px] font-bold">
           Get your{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-b from-purple-300 to-purple-600">
             customized
@@ -38,17 +37,17 @@ const OnBoarding = () => {
       <div className="mt-[50px] flex gap-4 mb-[30px]">
         <div className="bg-transparent border border-gray-500 md:p-[10px] rounded-[10px] cursor-pointer p-[8px]">
           <a href="https://x.com/heyrapto">
-            <Twitter className="md:w-[25px] text-white w-[20px]" />
+            <FaXTwitter className="md:w-[25px] text-white w-[20px]" />
           </a>
         </div>
         <div className="bg-transparent border border-gray-500 md:p-[10px] rounded-[10px] cursor-pointer p-[8px]">
           <a href="https://github.com/heycalebszn">
-            <Github className="md:w-[25px] text-white w-[20px]" />
+            <FaGithub className="md:w-[25px] text-white w-[20px]" />
           </a>
+          </div>
         </div>
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default OnBoarding;
