@@ -16,6 +16,7 @@ const initialFormState = {
   twitter: "",
   github: "",
   rgbabackground: "",
+  profilePicture: "",
 };
 
 const FormInput = memo(({ icon: Icon, ...props }) => (
@@ -138,7 +139,6 @@ const Form = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showBanner, setShowBanner] = useState(false);
-  const [color, setColor] = useState("#ffffff");
 
   const filteredTech = useMemo(
     () =>
@@ -193,9 +193,9 @@ const Form = () => {
     }));
   };
 
-  const handleImageUpload = async (e) => {
+  const handleProfileUpload = async (e) => {
     const file = e.target.files?.[0];
-
+    
     if (!file) {
       return alert("Please select a file to upload!");
     }
@@ -226,51 +226,15 @@ const Form = () => {
       if (data.secure_url) {
         setFormData((prev) => ({
           ...prev,
-          rgbabackground: data.secure_url,
+          profilePicture: data.secure_url,
         }));
-
-        scheduleImageDeletion(data.public_id);
       } else {
         throw new Error("Image URL is missing in the response!");
       }
     } catch (error) {
-      console.error("Error uploading image:", error.message);
-      alert("Failed to upload the image.");
+      console.error("Error uploading profile picture:", error.message);
+      alert("Failed to upload the profile picture.");
     }
-  };
-
-  const scheduleImageDeletion = (publicId) => {
-    const CLOUDINARY_API_KEY = import.meta.env.VITE_CLOUDINARY_API_KEY;
-    const CLOUDINARY_API_SECRET = import.meta.env.VITE_CLOUDINARY_API_SECRET;
-    const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-
-    const delay = 600000;
-
-    setTimeout(async () => {
-      try {
-        const auth = btoa(`${CLOUDINARY_API_KEY}:${CLOUDINARY_API_SECRET}`);
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/resources/image/upload/${publicId}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Basic ${auth}`,
-            },
-          }
-        );
-
-        if (response.ok) {
-          console.log(`Image with public ID ${publicId} deleted successfully.`);
-        } else {
-          console.error(
-            `Failed to delete image with public ID ${publicId}.`,
-            await response.json()
-          );
-        }
-      } catch (error) {
-        console.error("Error deleting image:", error.message);
-      }
-    }, delay);
   };
 
   return (
@@ -373,26 +337,27 @@ const Form = () => {
                 technologies
               </p>
             </div>
-            <div>
-              <label className="text-white text-[16px] sm:text-[20px]">
-                Background
-              </label>
-              <div className="mt-2">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <label className="text-white text-[16px] sm:text-[20px]">
+                  Background Style
+                </label>
                 <GradientSelector onGradientChange={handleGradientChange} />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
                 <div
-                  className="mt-5"
-                  onClick={() => document.getElementById("fileInput").click()}
+                  className="flex flex-col items-center gap-2 p-4 border border-gray-700 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors"
+                  onClick={() => document.getElementById("profileInput").click()}
                 >
-                  <div className="text-white font-bold w-32 h-10 rounded hover:bg-white hover:text-black cursor-pointer flex justify-center items-center border-2 border-white">
-                    <h1>choose image</h1>
-                    <input
-                      id="fileInput"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      className="cursor-pointer hidden"
-                    />
-                  </div>
+                  <span className="text-white text-sm">Profile Picture</span>
+                  <input
+                    id="profileInput"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleProfileUpload}
+                    className="hidden"
+                  />
                 </div>
               </div>
             </div>

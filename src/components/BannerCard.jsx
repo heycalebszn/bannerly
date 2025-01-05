@@ -1,5 +1,6 @@
 import { toPng } from "html-to-image";
-import { Facebook, Github, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Github, Linkedin } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
@@ -111,7 +112,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                     <p className="text-[20px] pl-[10px]">{field}_</p>
                     <div className="flex mt-[20px] items-center">
                       <div className="flex items-center">
-                        <Twitter className="w-[40px]" />
+                        <FaXTwitter className="w-[45px]" />
                         <p className="text-[15px]">{twitter} </p>
                         <span className="w-[1px] h-[25px] bg-white ml-[8px]"></span>
                       </div>
@@ -161,7 +162,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                         onClick={shareToTwitter}
                         className="bg-transparent border border-gray-500 p-[8px] rounded-[10px] cursor-pointer"
                       >
-                        <Twitter className="text-white w-[20px]" />
+                        <FaXTwitter className="text-white w-[30px]" />
                       </div>
                       <div
                         onClick={shareToFacebook}
@@ -206,22 +207,52 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div>
-          <h1 className="md:pt-[20px] md:text-[80px] font-semibold md:pl-[5px] text-[30px] pl-[10px] pt-[10px]">
-            {name}
-          </h1>
-          <p className="md:text-[35px] md:pl-[5px] text-[20px] pl-[10px]">
-            {field}_
-          </p>
-          <div className="flex md:mt-[20px] items-center mt-[10px] md:ml-[15px] ml-[3px]">
-            <div className="flex items-center">
-              <Twitter className="md:w-[fit] w-[35px]" />
-              <p className="md:text-[25px] text-[15px]">{twitter} </p>
-              <span className="w-[1px] h-[25px] bg-white mx-[1rem]"></span>
-            </div>
-            <div className="flex items-center">
-              <Github className="md:w-[fit] w-[35px]" />
-              <p className="md:text-[25px] text-[15px]">{github}</p>
+        <div className="flex flex-col md:flex-row items-start gap-8 w-full">
+          <div className="flex flex-col md:flex-row items-start gap-8 flex-1">
+            {formData.showProfilePicture && (
+              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/20 shrink-0 flex items-center justify-center bg-purple-500/10">
+                {formData.profilePicture ? (
+                  <img 
+                    src={formData.profilePicture}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/default-profile.png';
+                    }}
+                  />
+                ) : (
+                  <div className="text-white text-4xl font-bold">
+                    {formData.name[0]?.toUpperCase()}
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="flex-1">
+              <div className="relative">
+                <h1 className="md:text-[80px] text-[40px] font-bold leading-tight text-shadow-lg shadow-purple-500/50">
+                  {name}
+                </h1>
+                <div className="absolute inset-x-0 top-full transform scale-y-[-1] opacity-30">
+                  <h1 className="md:text-[80px] text-[40px] font-bold leading-tight bg-gradient-to-b from-transparent to-white/10 bg-clip-text text-transparent">
+                    {name}
+                  </h1>
+                </div>
+              </div>
+              <p className="md:text-[35px] text-[24px] text-purple-300 font-medium mt-2">
+                {field}_
+              </p>
+              <div className="flex items-center gap-6 mt-6">
+                <div className="flex items-center gap-2">
+                  <FaXTwitter className="w-6 h-6" />
+                  <p className="md:text-[20px] text-[16px]">{twitter}</p>
+                </div>
+                <div className="w-px h-6 bg-white/30"></div>
+                <div className="flex items-center gap-2">
+                  <Github className="w-6 h-6" />
+                  <p className="md:text-[20px] text-[16px]">{github}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -260,7 +291,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
               onClick={shareToTwitter}
               className="bg-transparent border border-gray-500 md:p-[10px] rounded-[10px] cursor-pointer p-[8px]"
             >
-              <Twitter className="md:w-[25px] text-white w-[20px]" />
+              <FaXTwitter className="md:w-[30px] text-white w-[25px]" />
             </div>
             <div
               onClick={shareToFacebook}
@@ -287,6 +318,9 @@ BannerCard.propTypes = {
     field: PropTypes.string.isRequired,
     twitter: PropTypes.string.isRequired,
     github: PropTypes.string.isRequired,
+    rgbabackground: PropTypes.string.isRequired,
+    profilePicture: PropTypes.string,
+    showProfilePicture: PropTypes.bool,
   }).isRequired,
   selectedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
   availableLanguages: PropTypes.arrayOf(
