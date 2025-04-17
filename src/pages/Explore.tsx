@@ -4,7 +4,7 @@ import { Search, Filter, ChevronDown, Star, Clock, TrendingUp } from "lucide-rea
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { RaptoBanner } from "../assets";
-// Sample banner data - replace with your actual data structure
+
 const demoTemplates = [
   {
     id: 1,

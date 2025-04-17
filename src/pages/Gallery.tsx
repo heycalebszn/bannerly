@@ -4,7 +4,7 @@ import { Heart, Share2, Download, Copy, Filter, Search, ChevronDown, Bookmark, B
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { RaptoBanner, RaptoPFP } from "../assets";
-// Sample gallery data - replace with your actual data
+
 const galleryItems = [
   {
     id: 1,

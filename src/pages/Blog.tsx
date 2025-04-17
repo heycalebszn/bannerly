@@ -18,7 +18,8 @@ import {
 } from "lucide-react";
 import React from "react";
 import { RaptoBanner, RaptoPFP } from "../assets";
-// Blog post data (in a real app, this would come from an API or CMS)
+
+// API or CMS data
 const blogPosts = [
   {
     id: 1,

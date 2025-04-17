@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CheckIcon } from "lucide-react";
 
-// Field options with added visual and description information
 const fields = [
   {
     id: 1,

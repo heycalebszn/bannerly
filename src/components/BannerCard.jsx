@@ -132,7 +132,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
               className="bg-white text-purple-700 text-base font-semibold 
                        py-2 px-4 rounded-lg w-full"
             >
-              {isGenerating ? "Generating..." : "Download Banner"}
+              {isGenerating ? "Downloading..." : "Download Banner"}
             </button>
           </div>
         </div>
