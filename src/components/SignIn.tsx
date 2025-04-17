@@ -125,7 +125,7 @@ const SignInComingSoon = () => {
             </div>
             
             <div className="border-t border-white/10 pt-6 text-center">
-              <p className="text-gray-400 mb-4">Want to try Banner Builder now?</p>
+              <p className="text-gray-400 mb-4">Want to try Bannerly now?</p>
               <Link to="/get-started">
                 <button className="bg-white text-purple-700 hover:bg-gray-100 px-6 py-2 rounded-lg font-medium transition-colors flex items-center mx-auto">
                   Continue As Guest <ArrowRight className="ml-2 w-4 h-4" />

@@ -204,7 +204,7 @@ const Navbar = () => {
             
             <Link
             //   to="/examples"
-            to="/coming-soon"
+            to="/gallery"
             className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             onClick={closeMenu}
             >
@@ -225,7 +225,7 @@ const Navbar = () => {
             
             <Link
             //   to="/blog" 
-            to="/coming-soon"
+            to="/blog"
             className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             onClick={closeMenu}
             >

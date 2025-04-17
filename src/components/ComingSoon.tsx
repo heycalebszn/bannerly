@@ -72,7 +72,7 @@ const FeatureComingSoon = () => {
           </span>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            The Future of <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-purple-600">Banner Builder</span> is Coming
+            The Future of <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-purple-600">Bannerly</span> is Coming
           </h1>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
