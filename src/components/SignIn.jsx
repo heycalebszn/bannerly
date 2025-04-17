@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "./Navbar";
 import { 
   LockKeyhole, 
   Mail, 
@@ -15,7 +15,7 @@ const SignInComingSoon = () => {
   const [email, setEmail] = useState("");
   const [notified, setNotified] = useState(false);
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Would handle notification sign-up
     setNotified(true);

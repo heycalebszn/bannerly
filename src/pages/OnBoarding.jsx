@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import { PaintBrushIcon } from "@heroicons/react/20/solid";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import React from "react";
+
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all hover:bg-white/10">
     <div className="p-3 bg-purple-500/20 rounded-lg w-fit mb-4">
@@ -153,16 +155,19 @@ const OnBoarding = () => {
             <TestimonialCard 
               name="Alex Johnson" 
               role="Frontend Developer"
+              avatar={""}
               quote="This tool saved me so much time! My GitHub profile looks way more professional now."
             />
             <TestimonialCard 
               name="Sarah Williams" 
               role="UI/UX Designer"
+              avatar={""}
               quote="The customization options are exactly what I needed to showcase my design skills."
             />
             <TestimonialCard 
               name="Marcus Chen" 
               role="Full Stack Developer"
+              avatar={""}
               quote="I love how easy it is to highlight my tech stack with those cool icons."
             />
           </div>
