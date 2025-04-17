@@ -11,6 +11,7 @@
 
 body{
     background: radial-gradient(circle at center, #0c031b 0%, #140c2c 35%, #19082f 60%, #0c031b 100%);
+    background-color: transparent;
     height: 120vh;
     width: 100%;
 }
