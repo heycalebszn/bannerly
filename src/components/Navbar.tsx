@@ -236,7 +236,7 @@ const Navbar = () => {
               <div className="flex items-center px-3">
                 <Link 
                 //   to="/login" 
-                to="/coming-soon"
+                to="/sign-in"
                 className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 onClick={closeMenu}
                 >
