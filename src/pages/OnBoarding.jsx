@@ -1,11 +1,10 @@
-import { FaGithub } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { ChevronRight, Users, Code } from "lucide-react";
 import { David } from "../assets";
 import Header from "../components/Header";
 import { PaintBrushIcon } from "@heroicons/react/20/solid";
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all hover:bg-white/10">
     <div className="p-3 bg-purple-500/20 rounded-lg w-fit mb-4">
@@ -34,6 +33,7 @@ const TestimonialCard = ({ name, role, quote, avatar }) => (
 const OnBoarding = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Navbar />
       {/* Hero Section */}
       <div className="flex flex-col items-center justify-center text-center pt-8 pb-16 lg:pt-16 lg:pb-24 px-4 md:px-6 lg:px-8">
         <Header />
@@ -187,7 +187,7 @@ const OnBoarding = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/40 border-t border-white/10 pt-12 pb-8 px-4 md:px-6 lg:px-8 mt-auto">
+      {/* <footer className="bg-black/40 border-t border-white/10 pt-12 pb-8 px-4 md:px-6 lg:px-8 mt-auto">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-10 mb-12">
             <div>
@@ -229,7 +229,8 @@ const OnBoarding = () => {
             <p className="mt-2">Made with ❤️ for developers and designers</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
+      <Footer />
     </div>
   );
 };
