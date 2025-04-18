@@ -102,19 +102,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
 
       {showPreviewModal && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 md:hidden">
-          <div
-            className="relative w-full h-full flex flex-col"
-            style={{
-                background: rgbabackground?.startsWith("https")
-                  ? `url(${rgbabackground})`
-                  : rgbabackground?.startsWith("linear") || rgbabackground?.startsWith("radial")
-                  ? rgbabackground
-                  : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat"
-            }}
-          >
+          <div className="relative w-full h-full flex flex-col">
             <div className="flex justify-between items-center p-4">
               <h2 className="text-white text-xl font-bold">Preview</h2>
               <button
@@ -130,6 +118,16 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                 <div
                   id="banner-preview"
                   className="text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg"
+                  style={{
+                    background: rgbabackground?.startsWith("https")
+                      ? `url(${rgbabackground})`
+                      : rgbabackground?.startsWith("linear") || rgbabackground?.startsWith("radial")
+                      ? rgbabackground
+                      : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat"
+                  }}
                 >
                   <div>
                     <h1 className="pt-[10px] text-[35px] font-semibold pl-[10px]">
