@@ -1,1 +1,1 @@
-export const MAX_STACK_SELECTIONS = 5; 
+export const MAX_STACK_SELECTIONS = 5;
