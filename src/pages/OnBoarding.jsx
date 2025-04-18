@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ChevronRight, Users, Code } from "lucide-react";
 import { David } from "../assets";
-import Header from "../components/Header";
+import Header from "../components/shared/Header";
 import { PaintBrushIcon } from "@heroicons/react/20/solid";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/shared/Navbar";
+import Footer from "../components/shared/Footer";
 import React from "react";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (

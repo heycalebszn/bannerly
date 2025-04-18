@@ -6,7 +6,7 @@ import Form from './components/Form';
 import GettingStarted from './pages/GettingStarted';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ComingSoon from './components/ComingSoon';
-import NotFound from './components/NotFound';
+import NotFound from './components/shared/NotFound.jsx';
 import SignInComingSoon from './components/SignIn';
 import Blog from './pages/Blog';
 import Explore from './pages/Explore';

@@ -16,7 +16,6 @@ const initialFormState = {
   rgbabackground: "linear-gradient(to right, #4f46e5, #9333ea)",
 };
 
-// Color themes for quick selection
 const PRESET_THEMES = [
   { id: 1, name: "Deep Purple", value: "linear-gradient(to right, #4f46e5, #9333ea)" },
   { id: 2, name: "Ocean Blue", value: "linear-gradient(to right, #0ea5e9, #2563eb)" },
