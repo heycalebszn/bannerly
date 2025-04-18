@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import {   Code, 
+import { 
+  Code, 
   Paintbrush,
   Users, 
   Sparkles, 
@@ -20,6 +21,7 @@ import {   Code,
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
 import React, { useState, useEffect, useRef } from "react";
+import { David, RaptoBanner, RaptoPFP } from "../assets";
 
 // const FeatureCard = ({ icon: Icon, title, description }) => (
 //   <div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all hover:bg-white/10">
@@ -395,7 +397,7 @@ const TabbedShowcase = () => {
         {activeTab === 'developers' && (
           <div className="relative">
             <img 
-              src="/api/placeholder/1200/600" 
+              src={RaptoBanner}
               alt="Developer Banner Example" 
               className="w-full object-cover"
             />
@@ -415,7 +417,7 @@ const TabbedShowcase = () => {
         {activeTab === 'designers' && (
           <div className="relative">
             <img 
-              src="/api/placeholder/1200/600" 
+              src={RaptoBanner}
               alt="Designer Banner Example" 
               className="w-full object-cover"
             />
@@ -435,7 +437,7 @@ const TabbedShowcase = () => {
         {activeTab === 'creators' && (
           <div className="relative">
             <img 
-              src="/api/placeholder/1200/600" 
+              src={RaptoBanner}
               alt="Content Creator Banner Example" 
               className="w-full object-cover"
             />
@@ -623,7 +625,7 @@ const OnBoarding = () => {
               
               <img
                 className="w-full object-cover"
-                src="/api/placeholder/1200/600"
+                src={RaptoBanner}
                 alt="Bannerly V3 Dashboard Preview"
               />
             </div>
@@ -812,7 +814,7 @@ const OnBoarding = () => {
                 </div>
                 <img
                   className="w-full object-cover"
-                  src="/api/placeholder/600/400"
+                  src={RaptoBanner}
                   alt="AI Design Assistant Preview"
                 />
                 <div className="p-4 bg-gray-900/80 border-t border-gray-800">
@@ -1112,7 +1114,7 @@ const OnBoarding = () => {
             
             <div className="relative h-96 md:h-[500px]">
               <img 
-                src="/api/placeholder/1200/500" 
+                src={RaptoBanner} 
                 alt="Interactive Demo" 
                 className="w-full h-full object-cover"
               />
