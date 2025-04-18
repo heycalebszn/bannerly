@@ -542,7 +542,10 @@ const OnBoarding = () => {
       <div className={`relative z-10 flex flex-col items-center justify-center text-center pt-32 pb-24 px-4 md:px-8 lg:px-12 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
         <div className="inline-flex items-center px-4 py-2 bg-purple-900/30 backdrop-blur-sm rounded-full border border-purple-700/40 mb-8">
           <Sparkles className="w-4 h-4 text-purple-400 mr-2" />
-          <span className="text-sm font-medium text-purple-300">Announcing V3 - Available Now</span>
+          {/* <span className="text-sm font-medium text-purple-300">
+            Announcing V3 - Available Now</span> */}
+          <span className="text-sm font-medium text-purple-300">
+            Anticipate V3 - Coming Soon</span>
         </div>
         
         <div className="max-w-5xl mx-auto">
