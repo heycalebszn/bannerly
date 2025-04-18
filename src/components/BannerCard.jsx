@@ -217,26 +217,26 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         }}
       >
         <div className="flex flex-col justify-between h-full p-6 md:p-8 lg:p-12">
-          <div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">{name}</h1>
-            <p className="text-lg md:text-xl lg:text-2xl mt-1 md:mt-2">{field}_</p>
+        <div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold">{name}</h1>
+            <p className="text-xl md:text-2xl lg:text-3xl mt-2">{field}_</p>
             
-            <div className="flex items-center mt-4 md:mt-6">
+            <div className="flex items-center mt-6 md:mt-8">
               <div className="flex items-center">
-                <Twitter className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                <p className="text-sm md:text-base">{twitter}</p>
+                <Twitter className="w-5 h-5 md:w-6 md:h-6 mr-2" />
+                <p className="text-base md:text-lg">{twitter}</p>
               </div>
-              <span className="w-px h-4 md:h-6 bg-white mx-3 md:mx-4"></span>
+              <span className="w-px h-6 bg-white mx-4"></span>
               <div className="flex items-center">
-                <Github className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                <p className="text-sm md:text-base">{github}</p>
+                <Github className="w-5 h-5 md:w-6 md:h-6 mr-2" />
+                <p className="text-base md:text-lg">{github}</p>
               </div>
             </div>
           </div>
           
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-end mt-4 md:mt-6">
-            <h1 className="font-bold text-base md:text-lg mr-2 md:mr-3">Stack:</h1>
-            <div className="flex flex-wrap gap-1 md:gap-2">
+          <div className="flex items-center justify-end">
+            <h1 className="font-bold text-lg md:text-xl mr-4">Stack:</h1>
+            <div className="flex gap-2">
               {selectedLanguages.map((lang) => {
                 const langObj = availableLanguages.find((l) => l.name === lang);
                 return langObj ? (
@@ -244,7 +244,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                     key={lang}
                     src={langObj.icon}
                     alt={langObj.name}
-                    className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-white p-1 rounded-md"
+                    className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-white p-1 md:p-2 rounded-md"
                   />
                 ) : null;
               })}
