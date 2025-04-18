@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
-import {   Code, 
-  Paintbrush,
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  Code, 
+  PaintBrush, 
   Users, 
   Sparkles, 
   ArrowRight, 
@@ -15,73 +17,10 @@ import {   Code,
   ChevronRight,
   Play,
   ArrowUpRight,
-  X,
- } from "lucide-react";
-import Navbar from "../components/shared/Navbar";
-import Footer from "../components/shared/Footer";
-import React, { useState, useEffect, useRef } from "react";
+  X
+} from 'lucide-react';
 
-// const FeatureCard = ({ icon: Icon, title, description }) => (
-//   <div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all hover:bg-white/10">
-//     <div className="p-3 bg-purple-500/20 rounded-lg w-fit mb-4">
-//       <Icon className="w-6 h-6 text-purple-400" />
-//     </div>
-//     <h3 className="text-xl font-semibold mb-2 text-white">{title}</h3>
-//     <p className="text-gray-400">{description}</p>
-//   </div>
-// );
-
-// const TestimonialCard = ({ name, role, quote, avatar }) => (
-//   <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-//     <p className="text-gray-300 italic mb-4">"{quote}"</p>
-//     <div className="flex items-center gap-3">
-//       <div className="w-10 h-10 rounded-full bg-purple-500/30 flex items-center justify-center">
-//         {avatar || name.charAt(0)}
-//       </div>
-//       <div>
-//         <p className="font-medium text-white">{name}</p>
-//         <p className="text-sm text-gray-400">{role}</p>
-//       </div>
-//     </div>
-//   </div>
-// );
-
-const FloatingElement = ({ children, delay, duration, className }) => {
-  return (
-    <div 
-      className={`animate-float ${className}`} 
-      style={{ 
-        animationDelay: `${delay}s`, 
-        animationDuration: `${duration}s` 
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
-// Animated gradient background
-const AnimatedBackground = () => {
-  return (
-    <div className="absolute inset-0 -z-10 overflow-hidden">
-      <div className="absolute -z-10 inset-0 bg-black"></div>
-      <div className="absolute -z-9 top-0 right-0 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute -z-9 bottom-0 left-0 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute -z-9 top-1/2 left-1/3 w-64 h-64 bg-cyan-500 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '4s' }}></div>
-    </div>
-  );
-};
-
-// Feature highlight component
-const FeatureHighlight = ({ icon: Icon, label, color }) => {
-  return (
-    <div className="flex items-center gap-2 text-gray-300 bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-800">
-      <Icon className={`w-5 h-5 ${color}`} />
-      <span className="text-sm font-medium">{label}</span>
-    </div>
-  );
-};
-
+// Animation hook for scroll reveal
 const useIntersectionObserver = (options = {}) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -501,186 +440,14 @@ const StatCounter = ({ value, label, prefix = '', suffix = '', delay = 0 }) => {
   );
 };
 
-// Particle effect component
-const ParticleEffect = () => {
-  return (
-    <div className="absolute inset-0 -z-5">
-      {[...Array(20)].map((_, i) => (
-        <div 
-          key={i}
-          className="absolute bg-white rounded-full opacity-30"
-          style={{
-            width: `${Math.random() * 4 + 1}px`,
-            height: `${Math.random() * 4 + 1}px`,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            animation: `floatParticle ${Math.random() * 10 + 10}s linear infinite`,
-            animationDelay: `${Math.random() * 10}s`
-          }}
-        />
-      ))}
-    </div>
-  );
-};
-
-const OnBoarding = () => {
-  const [isVisible, setIsVisible] = useState(false);
+// Main component containing all sections
+const HomeSections = () => {
   const [showVideoModal, setShowVideoModal] = useState(false);
   
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      {/* Hero Section */}
-      <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      <AnimatedBackground />
-      <ParticleEffect />
-      {/* <Header /> */}
-      
-      <div className={`relative z-10 flex flex-col items-center justify-center text-center pt-32 pb-24 px-4 md:px-8 lg:px-12 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-        <div className="inline-flex items-center px-4 py-2 bg-purple-900/30 backdrop-blur-sm rounded-full border border-purple-700/40 mb-8">
-          <Sparkles className="w-4 h-4 text-purple-400 mr-2" />
-          <span className="text-sm font-medium text-purple-300">Announcing V3 - Available Now</span>
-        </div>
-        
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-            The Ultimate
-            <span className="relative">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600"> Social Banner </span>
-              <svg className="absolute -bottom-2 left-0 w-full h-2 text-purple-500 opacity-75" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <path d="M0,0 Q50,10 100,0" stroke="currentColor" strokeWidth="4" fill="none" />
-              </svg>
-            </span>
-            Platform
-          </h1>
-          
-          <p className="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Create stunning, personalized banners with AI-powered design tools and next-gen customization options.
-          </p>
-          
-          <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <div className="flex gap-4 flex-col sm:flex-row">
-              <Link to="/create">
-                <button className="group relative bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-lg px-8 py-3 rounded-lg font-medium transition-all shadow-lg shadow-purple-700/30 hover:shadow-purple-700/50 w-full">
-                  <span className="flex items-center justify-center gap-2">
-                    Create Your Banner
-                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer"></span>
-                </button>
-              </Link>
-              
-              <a href="#features">
-                <button className="bg-transparent border border-gray-600 hover:border-white text-white text-lg px-8 py-3 rounded-lg font-medium transition-colors w-full flex items-center justify-center gap-2">
-                  Explore Features
-                </button>
-              </a>
-            </div>
-          </div>
-          
-          <div className="mt-12 flex flex-wrap gap-3 justify-center">
-            <FeatureHighlight icon={Zap} label="AI-Powered" color="text-yellow-400" />
-            <FeatureHighlight icon={Code} label="Developer Friendly" color="text-cyan-400" />
-            <FeatureHighlight icon={Layers} label="New Templates" color="text-purple-400" />
-          </div>
-        </div>
-        
-        <div className="relative mt-16 lg:mt-20 w-full max-w-6xl perspective-1000">
-          <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-20 h-12 bottom-0 rounded-b-xl"></div>
-          
-          <div className="relative group transform transition-all hover:-rotate-x-2 hover:scale-[1.01] duration-500">
-            <FloatingElement delay={0.5} duration={3} className="absolute -top-8 -right-8 z-20">
-              <div className="bg-gradient-to-br from-purple-500 to-pink-600 p-1 rounded-lg shadow-lg rotate-6">
-                <div className="bg-gray-900 p-3 rounded-md">
-                  <Sparkles className="w-5 h-5 text-purple-400" />
-                </div>
-              </div>
-            </FloatingElement>
-            
-            <FloatingElement delay={1.2} duration={4} className="absolute -bottom-6 -left-6 z-20">
-              <div className="bg-gradient-to-br from-blue-500 to-cyan-600 p-1 rounded-lg shadow-lg -rotate-12">
-                <div className="bg-gray-900 p-3 rounded-md">
-                  <Zap className="w-5 h-5 text-blue-400" />
-                </div>
-              </div>
-            </FloatingElement>
-            
-            <div className="overflow-hidden rounded-xl shadow-2xl shadow-purple-900/30 border border-purple-800/20 backdrop-blur-sm">
-              <div className="bg-gradient-to-br from-gray-900 to-gray-950 py-2 px-4 flex items-center gap-2 border-b border-gray-800">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <div className="text-xs text-gray-400 mx-auto">preview.bannerly.dev</div>
-              </div>
-              
-              <img
-                className="w-full object-cover"
-                src="/api/placeholder/1200/600"
-                alt="Bannerly V3 Dashboard Preview"
-              />
-            </div>
-          </div>
-          
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-            <div className="bg-gray-900/80 backdrop-blur-sm rounded-full py-2 px-6 border border-gray-800">
-              <div className="flex items-center gap-4">
-                <div className="flex -space-x-2">
-                  {[...Array(4)].map((_, i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 border-2 border-gray-900 flex items-center justify-center text-xs text-gray-300 font-medium">
-                      {String.fromCharCode(65 + i)}
-                    </div>
-                  ))}
-                </div>
-                <div className="text-gray-300 text-sm">+2,500 users already using V3</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes floatParticle {
-          0% { transform: translateY(0) translateX(0); opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { transform: translateY(-20vh) translateX(20px); opacity: 0; }
-        }
-        
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        
-        .animate-float {
-          animation: float ease-in-out infinite;
-        }
-        
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        
-        .rotate-x-2 {
-          transform: rotateX(2deg);
-        }
-      `}</style>
-    </div>
-
-
-    <section className="py-20 lg:py-28 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-black/20 to-purple-900/10">
+    <>
+      {/* Enhanced Features Section */}
+      <section className="py-20 lg:py-28 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-black/20 to-purple-900/10">
         <div className="max-w-6xl mx-auto">
           <SectionHeader 
             title="Powerful Features"
@@ -695,7 +462,7 @@ const OnBoarding = () => {
               description="Highlight your programming languages and tools with custom icons and beautiful layouts to showcase your expertise."
             />
             <FeatureCard 
-              icon={Paintbrush}
+              icon={PaintBrush}
               title="AI Design Assistant"
               description="Let our AI suggest design elements and color schemes based on your profile and preferences."
               isNew={true}
@@ -1016,7 +783,7 @@ const OnBoarding = () => {
                 <div className="flex items-start">
                   <div className="flex-shrink-0 mr-4">
                     <div className="h-10 w-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                      <Paintbrush className="h-5 w-5 text-white" />
+                      <PaintBrush className="h-5 w-5 text-white" />
                     </div>
                   </div>
                   <div>
@@ -1239,58 +1006,12 @@ const OnBoarding = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      {/* <footer className="bg-black/40 border-t border-white/10 pt-12 pb-8 px-4 md:px-6 lg:px-8 mt-auto">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-10 mb-12">
-            <div>
-              <h3 className="text-xl font-bold mb-4">Banner Builder</h3>
-              <p className="text-gray-400 mb-4">
-                Create stunning social media banners to showcase your tech skills and professional identity.
-              </p>
-              <div className="flex gap-3">
-                <a href="https://x.com/heyrapto" className="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
-                  <FaXTwitter className="w-5 h-5 text-gray-300" />
-                </a>
-                <a href="https://github.com/heycalebszn" className="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
-                  <FaGithub className="w-5 h-5 text-gray-300" />
-                </a>
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
-                <li><Link to="/get-started" className="text-gray-400 hover:text-white transition-colors">Get Started</Link></li>
-                <li><Link to="/form" className="text-gray-400 hover:text-white transition-colors">Create Banner</Link></li>
-                <li><a href="#features" className="text-gray-400 hover:text-white transition-colors">Features</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
-              <p className="text-gray-400 mb-2">Have questions or feedback?</p>
-              <a href="mailto:contact@bannerbuilder.com" className="text-purple-400 hover:text-purple-300 transition-colors">
-                contact@bannerbuilder.com
-              </a>
-            </div>
-          </div>
-          
-          <div className="pt-6 border-t border-white/10 text-center text-gray-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} Banner Builder. All rights reserved.</p>
-            <p className="mt-2">Made with ❤️ for developers and designers</p>
-          </div>
-        </div>
-      </footer> */}
+      {/* Video modal */}
       <VideoModal 
         isOpen={showVideoModal}
         onClose={() => setShowVideoModal(false)}
-        videoId="dQw4w9WgXcQ" 
+        videoId="dQw4w9WgXcQ" // Example YouTube video ID
       />
-      <Footer />
-    </div>
+    </>
   );
 };
-
-export default OnBoarding;
