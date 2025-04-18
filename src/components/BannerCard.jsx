@@ -61,9 +61,16 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         return;
       }
 
+      // Force specific dimensions for mobile
+      bannerNode.style.width = "600px";
+      bannerNode.style.height = "270px";
       bannerNode.classList.remove("hidden");
 
-      toPng(bannerNode)
+      toPng(bannerNode, {
+        width: 600,
+        height: 270,
+        pixelRatio: 2 // Increase for better quality
+      })
         .then((dataUrl) => {
           const link = document.createElement("a");
           link.download = "custom.png";
@@ -76,6 +83,8 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         })
         .finally(() => {
           bannerNode.classList.add("hidden");
+          bannerNode.style.width = ""; // Reset styles
+          bannerNode.style.height = "";
           setIsGenerating(false);
         });
     }, 1000);
@@ -114,7 +123,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
             <div className="flex-1 overflow-y-auto">
               <div className="min-w-[600px] flex items-center justify-center p-4">
                 <div
-                  id="banner-preview"
+                  id="banner"
                   className="bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg"
                   style={{
                     background: rgbabackground?.startsWith("https")
@@ -217,7 +226,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
       )}
 
       {/* Main Banner Preview (hidden for image generation) */}
-      <div
+      {/* <div
         id="banner"
         className="hidden flex-col text-white overflow-hidden w-full rounded-lg shadow-lg relative aspect-[3/1] md:aspect-[5/2]"
         style={{
@@ -266,7 +275,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Visible Banner Preview for Desktop */}
       <div
