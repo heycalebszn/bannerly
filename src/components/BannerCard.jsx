@@ -21,7 +21,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
       "width=550,height=420,menubar=no,toolbar=no"
     );
   };
-  
+
   const shareToTwitter = () => {
     if (!imageUrl) return;
     
@@ -37,7 +37,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
       "width=550,height=420,menubar=no,toolbar=no"
     );
   };
-  
+
   const shareToLinkedIn = () => {
     if (!imageUrl) return;
     const text = encodeURIComponent("Check out my new customized banner!");
@@ -51,17 +51,21 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
   };
 
   const downloadBanner = () => {
-    setIsGenerating(true); //Start the animation
+    setIsGenerating(true);
 
     setTimeout(() => {
-      const bannerNode = document.getElementById("banner");
+      const isMobilePreview = showPreviewModal;
+      const bannerId = isMobilePreview ? "banner-preview" : "banner";
+      const bannerNode = document.getElementById(bannerId);
 
       if (!bannerNode) {
         setIsGenerating(false);
         return;
       }
 
-      bannerNode.classList.remove("hidden");
+      if (!isMobilePreview) {
+        bannerNode.classList.remove("hidden");
+      }
 
       toPng(bannerNode)
         .then((dataUrl) => {
@@ -75,7 +79,9 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
           console.error("Could not generate image", err);
         })
         .finally(() => {
-          bannerNode.classList.add("hidden");
+          if (!isMobilePreview) {
+            bannerNode.classList.add("hidden");
+          }
           setIsGenerating(false);
         });
     }, 1000);
@@ -267,7 +273,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
       </div>
       <button
         onClick={downloadBanner}
-        className="bg-white text-purple-700 text-[18px] mt-[50px] p-[8px] rounded-[15px] font-semibold w-[300px]  mb-[50px]"
+        className="bg-white text-purple-700 text-[18px] mt-[50px] p-[8px] rounded-[15px] font-semibold w-[300px] mb-[50px] hidden md:block"
         disabled={isGenerating}
       >
         {isGenerating ? "Generating..." : "Download Banner"}
@@ -317,6 +323,6 @@ BannerCard.propTypes = {
       icon: PropTypes.string.isRequired,
     })
   ).isRequired,
-};
+}; 
 
 export default BannerCard;
