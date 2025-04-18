@@ -559,7 +559,7 @@ const Form = () => {
         {/* Banner Preview */}
         {(showBanner || isPreviewMode) && (
           <div className="mt-12 bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 shadow-xl transition-all duration-500 w-full">
-            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-2 md:px-[50px]">
               <Eye size={20} />
               {showBanner ? "Your Generated Banner" : "Banner Preview"}
             </h2>
@@ -569,7 +569,7 @@ const Form = () => {
               availableLanguages={TECH_STACK_CONFIG}
             />
             {!showBanner && (
-              <div className="mt-4 text-center text-gray-400 text-sm italic">
+              <div className="mt-4 text-center text-white text-sm italic">
                 This is a preview. Submit the form to generate your final banner.
               </div>
             )}

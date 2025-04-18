@@ -68,11 +68,6 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
 
   return (
     <section className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 pt-8 md:pt-24 relative">
-      {/* Preview Title */}
-      <h1 className="hidden md:block text-white text-2xl font-semibold underline mb-10">
-        Preview
-      </h1>
-
       {/* Mobile Preview Button */}
       <button
         onClick={() => setShowPreviewModal(true)}
