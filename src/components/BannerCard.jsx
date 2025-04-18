@@ -11,28 +11,43 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
   const [showPreviewModal, setShowPreviewModal] = useState(false);
 
   const shareToFacebook = () => {
-    const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      imageUrl
-    )}&text=${encodeURIComponent(
-      `Check out my new customized banner! You can also get yours at ${siteLink}`
-    )}`;
-    window.open(facebookShareUrl, "_blank");
+    if (!imageUrl) return;
+    const text = encodeURIComponent("Check out my new customized banner!");
+    const url = encodeURIComponent(siteLink);
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+    window.open(
+      facebookShareUrl,
+      "_blank",
+      "width=550,height=420,menubar=no,toolbar=no"
+    );
   };
-
+  
   const shareToTwitter = () => {
-    const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(
-      imageUrl
-    )}&text=${encodeURIComponent(
-      `Check out my new customized banner! You can also get yours at ${siteLink}`
-    )}`;
-    window.open(twitterShareUrl, "_blank");
+    if (!imageUrl) return;
+    
+    const text = encodeURIComponent("Check out my new customized banner!");
+    const url = encodeURIComponent(siteLink);
+    const hashtags = encodeURIComponent("DeveloperBanner,Bannerly");
+    
+    const twitterShareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
+    
+    window.open(
+      twitterShareUrl,
+      "_blank",
+      "width=550,height=420,menubar=no,toolbar=no"
+    );
   };
-
+  
   const shareToLinkedIn = () => {
-    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-      imageUrl
-    )}`;
-    window.open(linkedInUrl, "_blank");
+    if (!imageUrl) return;
+    const text = encodeURIComponent("Check out my new customized banner!");
+    const url = encodeURIComponent(siteLink);
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`;
+    window.open(
+      linkedInUrl,
+      "_blank",
+      "width=550,height=420,menubar=no,toolbar=no"
+    );
   };
 
   const downloadBanner = () => {
