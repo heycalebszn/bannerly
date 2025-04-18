@@ -573,6 +573,7 @@ const Form = () => {
                 This is a preview. Submit the form to generate your final banner.
               </div>
             )}
+            
             {showBanner && (
               <div className="mt-8 flex justify-center gap-4">
                 <button 

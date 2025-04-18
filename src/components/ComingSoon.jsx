@@ -63,7 +63,7 @@ const FeatureComingSoon = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Navbar />
-      
+
       {/* Hero Section */}
       <div className="pt-24 pb-16 px-4 md:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto text-center">

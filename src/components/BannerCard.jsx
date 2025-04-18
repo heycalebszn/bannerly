@@ -83,57 +83,116 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
 
       {/* Mobile Preview Modal */}
       {showPreviewModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 z-50 md:hidden flex flex-col">
-          <div className="flex-1 overflow-y-auto p-4">
-            <div 
-              className="bg-gradient-to-r from-zinc-800 from-70% to-zinc-700 text-white 
-                       w-full h-full min-h-[70vh] rounded-lg border border-purple-500/30 
-                       shadow-lg p-4 flex flex-col justify-between"
-            >
-              <div className="flex-1">
-                <h1 className="text-2xl md:text-3xl font-semibold pt-2 md:pt-4">{name}</h1>
-                <p className="text-base md:text-lg mt-1">{field}_</p>
-                
-                <div className="flex items-center mt-4 md:mt-6 space-x-3 md:space-x-4">
-                  <div className="flex items-center">
-                    <Twitter className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-                    <p className="text-xs md:text-sm">{twitter}</p>
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 md:hidden">
+          <div
+            className="relative w-full h-full flex flex-col"
+            style={{
+              background:
+                "radial-gradient(circle at center, #0c031b 0%, #140c2c 35%, #19082f 60%, #0c031b 100%)",
+            }}
+          >
+            <div className="flex justify-between items-center p-4">
+              <h2 className="text-white text-xl font-bold">Preview</h2>
+              <button
+                onClick={() => setShowPreviewModal(false)}
+                className="text-white text-2xl"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto">
+              <div className="min-w-[600px] flex items-center justify-center p-4">
+                <div
+                  id="banner-preview"
+                  className="bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg"
+                  style={{
+                    background: rgbabackground?.startsWith("https")
+                      ? `url(${rgbabackground})`
+                      : rgbabackground?.startsWith("linear") || rgbabackground?.startsWith("radial")
+                      ? rgbabackground
+                      : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat"
+                  }}
+                >
+                  <div>
+                    <h1 className="pt-[10px] text-[35px] font-semibold pl-[10px]">
+                      {name}
+                    </h1>
+                    <p className="text-[20px] pl-[10px]">{field}_</p>
+                    <div className="flex mt-[20px] items-center">
+                      <div className="flex items-center">
+                        <Twitter className="w-[40px]" />
+                        <p className="text-[15px]">{twitter} </p>
+                        <span className="w-[1px] h-[25px] bg-white ml-[8px]"></span>
+                      </div>
+                      <div className="flex items-center">
+                        <Github className="w-[40px]" />
+                        <p className="text-[15px]">{github}</p>
+                      </div>
+                    </div>
                   </div>
-                  <span className="w-px h-4 md:h-6 bg-white mx-1 md:mx-2"></span>
-                  <div className="flex items-center">
-                    <Github className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-                    <p className="text-xs md:text-sm">{github}</p>
+                  <div className="flex items-end justify-end mt-[30px]">
+                    <h1 className="font-bold text-[20px] pr-[30px]">Stack:</h1>
+                    <div className="flex gap-2">
+                      {selectedLanguages.map((lang) => {
+                        const langObj = availableLanguages.find(
+                          (l) => l.name === lang
+                        );
+                        return langObj ? (
+                          <img
+                            key={lang}
+                            src={langObj.icon}
+                            alt={langObj.name}
+                            className="w-[30px] bg-white p-[8px] rounded-md"
+                          />
+                        ) : null;
+                      })}
+                    </div>
                   </div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-end mt-4 md:mt-6">
-                <h1 className="font-bold text-sm md:text-base mr-2 md:mr-3">Stack:</h1>
-                <div className="flex flex-wrap gap-1 md:gap-2">
-                  {selectedLanguages.map((lang) => {
-                    const langObj = availableLanguages.find((l) => l.name === lang);
-                    return langObj ? (
-                      <img
-                        key={lang}
-                        src={langObj.icon}
-                        alt={langObj.name}
-                        className="w-6 h-6 md:w-8 md:h-8 bg-white p-0.5 md:p-1 rounded-md"
-                      />
-                    ) : null;
-                  })}
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div className="p-4 bg-black/50 backdrop-blur-sm">
-            <button
-              onClick={downloadBanner}
-              className="bg-white text-purple-700 text-base font-semibold 
-                       py-2 px-4 rounded-lg w-full"
-            >
-              {isGenerating ? "Downloading..." : "Download Banner"}
-            </button>
+
+            <div className="absolute bottom-0 left-0 right-0 bg-[#0c031b]/80 backdrop-blur-sm p-4">
+              <div className="flex flex-col items-center gap-4">
+                <button
+                  onClick={downloadBanner}
+                  className="bg-white text-purple-700 text-[18px] p-[8px] rounded-[15px] font-semibold w-[300px]"
+                  disabled={isGenerating}
+                >
+                  {isGenerating ? "Generating..." : "Download Banner"}
+                </button>
+
+                {imageUrl && (
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <h1 className="text-white text-[20px]">Share to:</h1>
+                    <div className="flex items-center justify-center gap-2">
+                      <div
+                        onClick={shareToTwitter}
+                        className="bg-transparent border border-gray-500 p-[8px] rounded-[10px] cursor-pointer"
+                      >
+                        <Twitter className="text-white w-[20px]" />
+                      </div>
+                      <div
+                        onClick={shareToFacebook}
+                        className="bg-transparent border border-gray-500 p-[8px] rounded-[10px] cursor-pointer"
+                      >
+                        <Facebook className="text-white w-[20px]" />
+                      </div>
+                      <div
+                        onClick={shareToLinkedIn}
+                        className="bg-transparent border border-gray-500 p-[8px] rounded-[10px] cursor-pointer"
+                      >
+                        <Linkedin className="text-white w-[20px]" />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -150,7 +209,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
       {/* Main Banner Preview (hidden for image generation) */}
       <div
         id="banner"
-        className="hidden md:flex flex-col text-white overflow-hidden w-full rounded-lg shadow-lg"
+        className="hidden flex-col text-white overflow-hidden w-full rounded-lg shadow-lg relative aspect-[3/1] md:aspect-[5/2]"
         style={{
           backgroundImage: rgbabackground?.startsWith("https")
             ? `url(${rgbabackground})`
@@ -159,9 +218,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
             : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
           backgroundPosition: "center",
           backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          minHeight: "300px",
-          height: "auto"
+          backgroundRepeat: "no-repeat"
         }}
       >
         <div className="flex flex-col justify-between h-full p-6 md:p-8 lg:p-12">
@@ -203,17 +260,13 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
 
       {/* Visible Banner Preview for Desktop */}
       <div
-        className="hidden md:flex flex-col text-white overflow-hidden w-full rounded-lg shadow-lg mt-8"
+        className="hidden md:flex flex-col text-white overflow-hidden w-full rounded-lg shadow-lg relative aspect-[3/1] md:aspect-[5/2]"
         style={{
           backgroundImage: rgbabackground?.startsWith("https")
             ? `url(${rgbabackground})`
-            : rgbabackground?.startsWith("linear") || rgbabackground?.startsWith("radial")
-            ? rgbabackground
-            : "linear-gradient(to right, rgb(41,41,41) 70%, #494949)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          height: "400px",
+            : rgbabackground,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       >
         {/* Content Container */}
