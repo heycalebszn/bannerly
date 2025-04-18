@@ -61,13 +61,12 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
         return;
       }
 
-      // Force specific dimensions for mobile
       bannerNode.style.width = "600px";
       bannerNode.style.height = "270px";
       bannerNode.classList.remove("hidden");
 
       toPng(bannerNode, {
-        width: 600,
+        width: 660,
         height: 270,
         pixelRatio: 2 // Increase for better quality
       })
@@ -137,7 +136,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                   }}
                 >
                   <div>
-                    <h1 className="pt-[10px] text-[35px] font-semibold pl-[10px]">
+                    <h1 className="text-[35px] font-semibold pl-[10px]">
                       {name}
                     </h1>
                     <p className="text-[20px] pl-[10px]">{field}_</p>
@@ -280,6 +279,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
       {/* Visible Banner Preview for Desktop */}
       <div
         className="hidden md:flex flex-col text-white overflow-hidden w-full rounded-lg shadow-lg relative aspect-[3/1] md:aspect-[5/2]"
+        id="banner"
         style={{
           backgroundImage: rgbabackground?.startsWith("https")
             ? `url(${rgbabackground})`
