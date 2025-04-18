@@ -124,7 +124,6 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                 <div
                   id="banner-preview"
                   className="text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg"
-                  
                 >
                   <div>
                     <h1 className="pt-[10px] text-[35px] font-semibold pl-[10px]">
