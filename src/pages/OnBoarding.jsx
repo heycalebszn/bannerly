@@ -568,7 +568,7 @@ const OnBoarding = () => {
           
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <div className="flex gap-4 flex-col sm:flex-row">
-              <Link to="/create">
+              <Link to="/get-started">
                 <button className="group relative bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-lg px-8 py-3 rounded-lg font-medium transition-all shadow-lg shadow-purple-700/30 hover:shadow-purple-700/50 w-full">
                   <span className="flex items-center justify-center gap-2">
                     Create Your Banner
