@@ -89,7 +89,7 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
 
       <button
         onClick={() => setShowPreviewModal(true)}
-        className="md:hidden bg-white text-purple-700 text-[16px] mb-4 p-[8px] rounded-[15px] font-semibold w-[200px]"
+        className="md:hidden bg-white text-purple-700 text-[16px] mb-4 p-[8px] rounded-[15px] font-semibold w-[200px] mt-[30px] w-full"
       >
         View Full Preview
       </button>
@@ -123,10 +123,11 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
               <div className="min-w-[600px] flex items-center justify-center p-4">
                 <div
                   id="banner-preview"
-                  className="bg-gradient-to-r from-[rgb(41,41,41)] from-70% to-[#494949] text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg"
+                  className="text-white flex-col overflow-hidden w-[600px] px-[35px] text-left h-[270px] py-[30px] border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] rounded-lg"
+                  
                 >
                   <div>
-                    <h1 className="pt-[30px] text-[35px] font-semibold pl-[10px]">
+                    <h1 className="pt-[10px] text-[35px] font-semibold pl-[10px]">
                       {name}
                     </h1>
                     <p className="text-[20px] pl-[10px]">{field}_</p>
@@ -145,15 +146,15 @@ const BannerCard = ({ formData, selectedLanguages, availableLanguages }) => {
                   <div className="flex items-end justify-end mt-[30px]">
                     <h1 className="font-bold text-[20px] pr-[30px]">Stack:</h1>
                     <div className="flex gap-2">
-                      {selectedLanguages.map((index, lang) => {
+                      {selectedLanguages.map((lang) => {
                         const langObj = availableLanguages.find(
                           (l) => l.name == lang
                         );
                         return langObj ? (
                           <img
-                            key={index}
+                            key={lang}
                             src={langObj.icon}
-                            alt={lang.name}
+                            alt={langObj.name}
                             className="w-[30px] bg-white p-[8px] rounded-md"
                           />
                         ) : null;
