@@ -2,6 +2,30 @@ import { toPng } from "html-to-image";
 import { Facebook, Github, Linkedin, Twitter, Download, Share2, X } from "lucide-react";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { PRESET_THEMES, PATTERN_STYLES } from "./Form";
+
+// Function to determine if a color is light or dark
+const isLightColor = (color) => {
+  // Remove any non-hex characters
+  const hex = color.replace(/[^0-9A-F]/gi, '');
+  // Convert to RGB
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  // Calculate brightness
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness > 128;
+};
+
+// Function to get text color based on background
+const getTextColor = (backgroundColor) => {
+  if (backgroundColor.startsWith('linear-gradient')) {
+    // For gradients, we'll use the first color
+    const firstColor = backgroundColor.match(/#[0-9A-Fa-f]{6}/)?.[0] || '#000000';
+    return isLightColor(firstColor) ? 'text-gray-900' : 'text-white';
+  }
+  return isLightColor(backgroundColor) ? 'text-gray-900' : 'text-white';
+};
 
 const THEMES = {
   classic: {
@@ -16,16 +40,64 @@ const THEMES = {
       divider: "bg-white",
     }
   },
-  neon: {
-    name: "Neon",
+  modern: {
+    name: "Modern",
     styles: {
-      container: "bg-black",
-      title: "text-purple-400 drop-shadow-[0_0_5px_rgba(168,85,247,0.8)]",
-      subtitle: "text-cyan-400 drop-shadow-[0_0_3px_rgba(34,211,238,0.6)]",
-      social: "text-green-400",
-      stackTitle: "text-purple-400 font-bold",
-      stackIcon: "bg-black border border-purple-500 p-2 rounded-md",
-      divider: "bg-purple-500",
+      container: "bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900",
+      title: "text-white",
+      subtitle: "text-indigo-200",
+      social: "text-pink-200",
+      stackTitle: "text-white font-bold",
+      stackIcon: "bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/20",
+      divider: "bg-white/30",
+    }
+  },
+  cyberpunk: {
+    name: "Cyberpunk",
+    styles: {
+      container: "bg-gradient-to-r from-yellow-500 via-pink-500 to-purple-500",
+      title: "text-black",
+      subtitle: "text-gray-900",
+      social: "text-gray-900",
+      stackTitle: "text-black font-bold",
+      stackIcon: "bg-black/20 backdrop-blur-sm p-2 rounded-lg border border-black/20",
+      divider: "bg-black/30",
+    }
+  },
+  ocean: {
+    name: "Ocean",
+    styles: {
+      container: "bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400",
+      title: "text-white",
+      subtitle: "text-blue-100",
+      social: "text-cyan-100",
+      stackTitle: "text-white font-bold",
+      stackIcon: "bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/20",
+      divider: "bg-white/30",
+    }
+  },
+  sunset: {
+    name: "Sunset",
+    styles: {
+      container: "bg-gradient-to-r from-orange-500 via-red-500 to-purple-500",
+      title: "text-white",
+      subtitle: "text-orange-100",
+      social: "text-red-100",
+      stackTitle: "text-white font-bold",
+      stackIcon: "bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/20",
+      divider: "bg-white/30",
+    }
+  },
+  forest: {
+    name: "Forest",
+    styles: {
+      container: "bg-gradient-to-r from-green-700 via-emerald-600 to-teal-500",
+      title: "text-white",
+      subtitle: "text-green-100",
+      social: "text-emerald-100",
+      stackTitle: "text-white font-bold",
+      stackIcon: "bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/20",
+      divider: "bg-white/30",
     }
   },
   minimal: {
@@ -33,34 +105,22 @@ const THEMES = {
     styles: {
       container: "bg-white",
       title: "text-gray-900",
-      subtitle: "text-gray-700",
-      social: "text-gray-800",
+      subtitle: "text-gray-600",
+      social: "text-gray-700",
       stackTitle: "text-gray-900 font-bold",
-      stackIcon: "bg-gray-100 p-2 rounded-md shadow-sm",
-      divider: "bg-gray-400",
-    }
-  },
-  gradient: {
-    name: "Gradient",
-    styles: {
-      container: "bg-gradient-to-r from-purple-700 to-blue-500",
-      title: "text-white",
-      subtitle: "text-blue-100",
-      social: "text-white",
-      stackTitle: "text-white font-bold",
-      stackIcon: "bg-white/90 p-2 rounded-md",
-      divider: "bg-white/70",
+      stackIcon: "bg-gray-100 p-2 rounded-lg shadow-sm",
+      divider: "bg-gray-300",
     }
   },
   dark: {
     name: "Dark",
     styles: {
-      container: "bg-gray-900",
+      container: "bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900",
       title: "text-white",
       subtitle: "text-gray-300",
-      social: "text-gray-300",
+      social: "text-gray-400",
       stackTitle: "text-white font-bold",
-      stackIcon: "bg-gray-800 border border-gray-700 p-2 rounded-md",
+      stackIcon: "bg-gray-800 p-2 rounded-lg border border-gray-700",
       divider: "bg-gray-600",
     }
   }
@@ -70,29 +130,27 @@ const LAYOUTS = {
   standard: {
     name: "Standard",
     component: ({ formData, selectedLanguages, availableLanguages, themeStyles }) => (
-      <div className="flex flex-col justify-between h-full p-6 md:p-8 lg:p-10">
-        {/* User Info */}
+      <div className="flex flex-col justify-between h-full p-8 md:p-10 lg:p-12">
         <div>
-          <h1 className={`text-3xl md:text-4xl lg:text-5xl font-semibold ${themeStyles.title}`}>{formData.name}</h1>
-          <p className={`text-lg md:text-xl lg:text-2xl mt-2 ${themeStyles.subtitle}`}>{formData.field}_</p>
+          <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold ${themeStyles.title}`}>{formData.name}</h1>
+          <p className={`text-2xl md:text-3xl lg:text-4xl mt-4 ${themeStyles.subtitle}`}>{formData.field}_</p>
           
-          <div className={`flex items-center mt-4 md:mt-6 ${themeStyles.social}`}>
+          <div className={`flex items-center mt-8 md:mt-10 ${themeStyles.social}`}>
             <div className="flex items-center">
-              <Twitter className="w-5 h-5 md:w-6 md:h-6 mr-2" />
-              <p className="text-base md:text-lg">{formData.twitter}</p>
+              <Twitter className="w-8 h-8 md:w-10 md:h-10 mr-4" />
+              <p className="text-xl md:text-2xl">{formData.twitter}</p>
             </div>
-            <span className={`w-px h-6 mx-4 ${themeStyles.divider}`}></span>
+            <span className={`w-px h-8 mx-8 ${themeStyles.divider}`}></span>
             <div className="flex items-center">
-              <Github className="w-5 h-5 md:w-6 md:h-6 mr-2" />
-              <p className="text-base md:text-lg">{formData.github}</p>
+              <Github className="w-8 h-8 md:w-10 md:h-10 mr-4" />
+              <p className="text-xl md:text-2xl">{formData.github}</p>
             </div>
           </div>
         </div>
         
-        {/* Stack */}
-        <div className="flex items-center justify-end">
-          <h1 className={`text-base md:text-lg mr-3 ${themeStyles.stackTitle}`}>Stack:</h1>
-          <div className="flex gap-2">
+        <div className="flex items-center justify-end mt-8">
+          <h1 className={`text-2xl md:text-3xl mr-6 ${themeStyles.stackTitle}`}>Stack:</h1>
+          <div className="flex gap-4">
             {selectedLanguages.map((lang) => {
               const langObj = availableLanguages.find((l) => l.name === lang);
               return langObj ? (
@@ -100,7 +158,7 @@ const LAYOUTS = {
                   key={lang}
                   src={langObj.icon}
                   alt={langObj.name}
-                  className={`w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 ${themeStyles.stackIcon}`}
+                  className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 ${themeStyles.stackIcon}`}
                 />
               ) : null;
             })}
@@ -113,24 +171,24 @@ const LAYOUTS = {
     name: "Centered",
     component: ({ formData, selectedLanguages, availableLanguages, themeStyles }) => (
       <div className="flex flex-col items-center justify-center text-center h-full p-8 md:p-12 lg:p-16">
-        <h1 className={`text-4xl md:text-5xl lg:text-6xl font-semibold ${themeStyles.title}`}>{formData.name}</h1>
-        <p className={`text-xl md:text-2xl lg:text-3xl mt-2 ${themeStyles.subtitle}`}>{formData.field}_</p>
+        <h1 className={`text-6xl md:text-7xl lg:text-8xl font-bold ${themeStyles.title}`}>{formData.name}</h1>
+        <p className={`text-3xl md:text-4xl lg:text-5xl mt-6 ${themeStyles.subtitle}`}>{formData.field}_</p>
         
-        <div className={`flex items-center justify-center mt-6 md:mt-8 ${themeStyles.social}`}>
+        <div className={`flex items-center justify-center mt-10 md:mt-12 ${themeStyles.social}`}>
           <div className="flex items-center">
-            <Twitter className="w-5 h-5 md:w-6 md:h-6 mr-2" />
-            <p className="text-base md:text-lg">{formData.twitter}</p>
+            <Twitter className="w-8 h-8 md:w-10 md:h-10 mr-4" />
+            <p className="text-xl md:text-2xl">{formData.twitter}</p>
           </div>
-          <span className={`w-px h-6 mx-4 ${themeStyles.divider}`}></span>
+          <span className={`w-px h-8 mx-8 ${themeStyles.divider}`}></span>
           <div className="flex items-center">
-            <Github className="w-5 h-5 md:w-6 md:h-6 mr-2" />
-            <p className="text-base md:text-lg">{formData.github}</p>
+            <Github className="w-8 h-8 md:w-10 md:h-10 mr-4" />
+            <p className="text-xl md:text-2xl">{formData.github}</p>
           </div>
         </div>
         
-        <div className="mt-8 md:mt-12">
-          <h1 className={`text-lg md:text-xl mb-4 ${themeStyles.stackTitle}`}>Stack:</h1>
-          <div className="flex gap-3 justify-center">
+        <div className="mt-12 md:mt-16">
+          <h1 className={`text-2xl md:text-3xl mb-8 ${themeStyles.stackTitle}`}>Stack:</h1>
+          <div className="flex gap-6 justify-center">
             {selectedLanguages.map((lang) => {
               const langObj = availableLanguages.find((l) => l.name === lang);
               return langObj ? (
@@ -138,7 +196,7 @@ const LAYOUTS = {
                   key={lang}
                   src={langObj.icon}
                   alt={langObj.name}
-                  className={`w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 ${themeStyles.stackIcon}`}
+                  className={`w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 ${themeStyles.stackIcon}`}
                 />
               ) : null;
             })}
@@ -152,25 +210,25 @@ const LAYOUTS = {
     component: ({ formData, selectedLanguages, availableLanguages, themeStyles }) => (
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         <div className="flex flex-col justify-center p-8 md:p-12">
-          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-semibold ${themeStyles.title}`}>{formData.name}</h1>
-          <p className={`text-xl md:text-2xl lg:text-3xl mt-2 ${themeStyles.subtitle}`}>{formData.field}_</p>
+          <h1 className={`text-6xl md:text-7xl lg:text-8xl font-bold ${themeStyles.title}`}>{formData.name}</h1>
+          <p className={`text-3xl md:text-4xl lg:text-5xl mt-6 ${themeStyles.subtitle}`}>{formData.field}_</p>
           
-          <div className={`flex items-center mt-6 md:mt-8 ${themeStyles.social}`}>
+          <div className={`flex items-center mt-10 md:mt-12 ${themeStyles.social}`}>
             <div className="flex items-center">
-              <Twitter className="w-5 h-5 md:w-6 md:h-6 mr-2" />
-              <p className="text-base md:text-lg">{formData.twitter}</p>
+              <Twitter className="w-8 h-8 md:w-10 md:h-10 mr-4" />
+              <p className="text-xl md:text-2xl">{formData.twitter}</p>
             </div>
-            <span className={`w-px h-6 mx-4 ${themeStyles.divider}`}></span>
+            <span className={`w-px h-8 mx-8 ${themeStyles.divider}`}></span>
             <div className="flex items-center">
-              <Github className="w-5 h-5 md:w-6 md:h-6 mr-2" />
-              <p className="text-base md:text-lg">{formData.github}</p>
+              <Github className="w-8 h-8 md:w-10 md:h-10 mr-4" />
+              <p className="text-xl md:text-2xl">{formData.github}</p>
             </div>
           </div>
         </div>
         
         <div className="flex flex-col justify-center items-center p-8 md:p-12">
-          <h1 className={`text-lg md:text-xl mb-6 ${themeStyles.stackTitle}`}>Stack:</h1>
-          <div className="grid grid-cols-3 gap-4">
+          <h1 className={`text-2xl md:text-3xl mb-10 ${themeStyles.stackTitle}`}>Stack:</h1>
+          <div className="grid grid-cols-3 gap-6">
             {selectedLanguages.map((lang) => {
               const langObj = availableLanguages.find((l) => l.name === lang);
               return langObj ? (
@@ -178,7 +236,7 @@ const LAYOUTS = {
                   key={lang}
                   src={langObj.icon}
                   alt={langObj.name}
-                  className={`w-10 h-10 md:w-12 md:h-12 ${themeStyles.stackIcon}`}
+                  className={`w-16 h-16 md:w-20 md:h-20 ${themeStyles.stackIcon}`}
                 />
               ) : null;
             })}
@@ -212,33 +270,67 @@ const BannerCard = ({
 
   const siteLink = "https://bannerly.vercel.app";
   
-  const themeConfig = THEMES[currentTheme] || THEMES.classic;
-  const themeStyles = { ...themeConfig.styles, ...(customStyles[currentTheme] || {}) };
+  // Get dynamic text colors based on background
+  const textColor = getTextColor(formData.rgbabackground || THEMES[theme].styles.container);
+  const textColorLight = textColor === 'text-white' ? 'text-gray-200' : 'text-gray-700';
+  const textColorLighter = textColor === 'text-white' ? 'text-gray-300' : 'text-gray-600';
+
+  // Update theme styles with dynamic colors
+  const themeStyles = {
+    ...THEMES[theme].styles,
+    title: textColor,
+    subtitle: textColorLight,
+    social: textColorLighter,
+    stackTitle: textColor,
+    stackIcon: textColor === 'text-white' 
+      ? 'bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/20'
+      : 'bg-black/20 backdrop-blur-sm p-2 rounded-lg border border-black/20',
+    divider: textColor === 'text-white' ? 'bg-white/30' : 'bg-black/30',
+  };
+
   const LayoutComponent = LAYOUTS[currentLayout]?.component || LAYOUTS.standard.component;
 
   // Common background style generator
   const getBackgroundStyle = (isMobile = false) => {
-    const baseStyle = {
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-    };
-
     if (formData.rgbabackground?.startsWith("https")) {
-      return { 
-        ...baseStyle,
-        backgroundImage: `url(${formData.rgbabackground})`
+      return {
+        backgroundImage: `url(${formData.rgbabackground})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
       };
     }
     
     if (formData.rgbabackground?.startsWith("linear") || formData.rgbabackground?.startsWith("radial")) {
-      return { 
-        backgroundImage: formData.rgbabackground 
+      const selectedTheme = PRESET_THEMES.find(theme => theme.value === formData.rgbabackground);
+      
+      if (selectedTheme && selectedTheme.pattern) {
+        const patternStyle = PATTERN_STYLES[selectedTheme.pattern];
+        const patternColor = selectedTheme.patternColor.replace('#', '');
+        const patternImage = patternStyle.backgroundImage.replace('%23COLOR%', patternColor);
+        
+        return {
+          background: `${formData.rgbabackground}, ${patternImage}`,
+          backgroundSize: 'cover, auto',
+          backgroundPosition: 'center, center',
+          backgroundRepeat: 'no-repeat, repeat'
+        };
+      }
+      
+      return {
+        background: formData.rgbabackground,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       };
     }
 
-    return { 
-      background: THEMES[currentTheme]?.styles?.background 
+    // If no custom background is set, use the theme's background
+    return {
+      background: THEMES[currentTheme]?.styles?.container || THEMES.classic.styles.container,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
     };
   };
   

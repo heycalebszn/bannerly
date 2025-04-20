@@ -17,12 +17,101 @@ const initialFormState = {
 };
 
 const PRESET_THEMES = [
-  { id: 1, name: "Deep Purple", value: "linear-gradient(to right, #4f46e5, #9333ea)" },
-  { id: 2, name: "Ocean Blue", value: "linear-gradient(to right, #0ea5e9, #2563eb)" },
-  { id: 3, name: "Forest", value: "linear-gradient(to right, #10b981, #059669)" },
-  { id: 4, name: "Sunset", value: "linear-gradient(to right, #f59e0b, #ef4444)" },
-  { id: 5, name: "Midnight", value: "linear-gradient(to right, #1e293b, #334155)" },
+  { 
+    id: 1, 
+    name: "Floral Elegance", 
+    value: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+    pattern: "floral",
+    patternColor: "#4f46e5"
+  },
+  { 
+    id: 2, 
+    name: "Tech Circuit", 
+    value: "linear-gradient(to right, #0f172a, #1e293b)",
+    pattern: "circuit",
+    patternColor: "#38bdf8"
+  },
+  { 
+    id: 3, 
+    name: "Geometric", 
+    value: "linear-gradient(45deg, #ff6b6b, #4ecdc4)",
+    pattern: "geometric",
+    patternColor: "#ffffff"
+  },
+  { 
+    id: 4, 
+    name: "Minimal Dots", 
+    value: "linear-gradient(to right, #f3f4f6, #e5e7eb)",
+    pattern: "dots",
+    patternColor: "#6b7280"
+  },
+  { 
+    id: 5, 
+    name: "Abstract Waves", 
+    value: "linear-gradient(to right, #6366f1, #8b5cf6)",
+    pattern: "waves",
+    patternColor: "#ffffff"
+  },
+  { 
+    id: 6, 
+    name: "Nature", 
+    value: "linear-gradient(to right, #10b981, #059669)",
+    pattern: "leaves",
+    patternColor: "#ffffff"
+  },
+  { 
+    id: 7, 
+    name: "Space", 
+    value: "linear-gradient(to right, #1e293b, #0f172a)",
+    pattern: "stars",
+    patternColor: "#fbbf24"
+  },
+  { 
+    id: 8, 
+    name: "Watercolor", 
+    value: "linear-gradient(to right, #f472b6, #c084fc)",
+    pattern: "watercolor",
+    patternColor: "#ffffff"
+  }
 ];
+
+// Add pattern styles
+const PATTERN_STYLES = {
+  floral: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "60px 60px"
+  },
+  circuit: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "60px 60px"
+  },
+  geometric: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "60px 60px"
+  },
+  dots: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "20px 20px"
+  },
+  waves: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "60px 60px"
+  },
+  leaves: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "60px 60px"
+  },
+  stars: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "60px 60px"
+  },
+  watercolor: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23COLOR%' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+    backgroundSize: "60px 60px"
+  }
+};
+
+export { PRESET_THEMES, PATTERN_STYLES };
 
 const Form = () => {
   const [formData, setFormData] = useLocalStorage("bannerFormData", initialFormState);
@@ -449,70 +538,98 @@ const Form = () => {
           {/* Step 3: Background & Design */}
           <div className={`transition-all duration-300 ${activeStep === 3 ? "block" : "hidden"}`}>
             <div>
-              <label className="block text-gray-300 mb-2 text-base font-medium">Choose Background Style</label>
+              <label className="block text-gray-300 mb-4 text-lg font-medium">Choose Background Style</label>
               
               {/* Color Themes */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 {PRESET_THEMES.map(theme => (
                   <button
                     key={theme.id}
                     type="button"
                     onClick={() => handleThemeSelect(theme.value)}
-                    className={`h-12 w-12 rounded-lg overflow-hidden p-0.5 border transition-all
+                    className={`relative h-32 rounded-lg overflow-hidden group transition-all duration-300
                       ${formData.rgbabackground === theme.value 
-                        ? "border-white scale-110" 
-                        : "border-transparent hover:border-gray-400"}`}
+                        ? "ring-2 ring-white scale-105" 
+                        : "hover:scale-102"}`}
                   >
                     <div 
-                      className="w-full h-full rounded"
-                      style={{ background: theme.value }}
+                      className="absolute inset-0"
+                      style={{ 
+                        background: theme.value,
+                        ...(theme.pattern && {
+                          backgroundImage: PATTERN_STYLES[theme.pattern].backgroundImage.replace('%23COLOR%', theme.patternColor.replace('#', '')),
+                          backgroundSize: PATTERN_STYLES[theme.pattern].backgroundSize,
+                          backgroundRepeat: 'repeat'
+                        })
+                      }}
                     />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-2 bg-black/50 text-white text-sm font-medium">
+                      {theme.name}
+                    </div>
+                    {formData.rgbabackground === theme.value && (
+                      <div className="absolute top-2 right-2 bg-white/90 text-black p-1 rounded-full">
+                        <Check size={16} />
+                      </div>
+                    )}
                   </button>
                 ))}
-                
-                {/* Upload Image Option */}
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className={`h-12 w-12 rounded-lg overflow-hidden border border-dashed border-gray-400 
-                    flex items-center justify-center hover:border-white transition-all
-                    ${typeof formData.rgbabackground === 'string' && formData.rgbabackground.startsWith('http') 
-                      ? 'border-white scale-110' : ''}`}
-                >
-                  <Upload size={18} className="text-gray-400" />
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="hidden"
-                  />
-                </button>
+              </div>
+              
+              {/* Custom Upload Option */}
+              <div className="mt-8">
+                <label className="block text-gray-300 mb-4 text-lg font-medium">Custom Background</label>
+                <div className="flex flex-col md:flex-row gap-4">
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className={`flex-1 h-32 rounded-lg border-2 border-dashed border-gray-600 
+                      flex items-center justify-center gap-2 text-gray-400 hover:text-white hover:border-white
+                      transition-all duration-300 group
+                      ${typeof formData.rgbabackground === 'string' && formData.rgbabackground.startsWith('http') 
+                        ? 'border-white' : ''}`}
+                  >
+                    <Upload size={24} className="group-hover:scale-110 transition-transform duration-300" />
+                    <span className="text-sm">Upload Custom Image</span>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </button>
+                  
+                  {formData.rgbabackground && (
+                    <div className="flex-1 h-32 rounded-lg overflow-hidden relative">
+                      <div 
+                        className="absolute inset-0"
+                        style={{
+                          background: formData.rgbabackground,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center'
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black/20" />
+                      <div className="absolute bottom-0 left-0 right-0 p-2 bg-black/50 text-white text-sm">
+                        Current Background
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
               
               {/* Background Preview */}
-              <div className="mb-6">
-                <label className="block text-gray-300 mb-2 text-sm font-medium">Background Preview</label>
+              <div className="mt-8">
+                <label className="block text-gray-300 mb-4 text-lg font-medium">Preview</label>
                 <div 
-                  className="w-full h-32 rounded-lg overflow-hidden"
+                  className="w-full h-40 rounded-lg overflow-hidden shadow-lg"
                   style={{
                     background: formData.rgbabackground,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
                 />
-              </div>
-              
-              {/* Custom Upload Info */}
-              <div className="bg-gray-800/70 rounded-lg p-4">
-                <h3 className="text-gray-300 font-medium mb-2 flex items-center gap-2">
-                  <Upload size={16} />
-                  Custom Image Upload
-                </h3>
-                <p className="text-gray-400 text-sm">
-                  For best results, upload an image that's at least 1200×400px. 
-                  Uploaded images will be automatically removed after 10 minutes to save space.
-                </p>
               </div>
             </div>
           </div>
