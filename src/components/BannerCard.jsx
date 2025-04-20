@@ -264,7 +264,7 @@ const BannerCard = ({
   const [currentTheme, setCurrentTheme] = useState(theme);
   const [currentLayout, setCurrentLayout] = useState(layout);
   
-  // Updated dimensions
+  // Updated dimensions to match Twitter's recommended banner size
   const [desktopDimensions, setDesktopDimensions] = useState({ width: 1500, height: 500 });
   const [mobileDimensions, setMobileDimensions] = useState({ width: 750, height: 250 });
 
@@ -533,7 +533,11 @@ const BannerCard = ({
       <div
         id="banner"
         className="hidden md:block w-full rounded-lg shadow-lg overflow-hidden"
-        style={getBackgroundStyle()}
+        style={{
+          ...getBackgroundStyle(),
+          width: `${desktopDimensions.width}px`,
+          height: `${desktopDimensions.height}px`,
+        }}
       >
         <LayoutComponent 
           formData={formData}
